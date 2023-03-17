@@ -25,7 +25,12 @@
     --tran-03: all 0.3s ease;
     --tran-03: all 0.2s ease;
 }
-
+#text-rastreio{
+    line-height: 1px;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: -5px;
+}
 body{
     min-height: 100vh;
     background-color: var(--primary-color);
