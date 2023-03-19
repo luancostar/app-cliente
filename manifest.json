@@ -1,27 +1,27 @@
 {
-    "background_color": "#ffffff",
-    "description": "Aplicação para acompanhamento e rastreio de mercadorias, histórico de encomendas e gerenciamento de pontos promocionais para clientes VB Express.",
-    "dir": "ltr",
-    "display": "standalone",
-    "name": "VB Mobile - Cliente",
-    "orientation": "any",
-    "scope": "/",
-    "short_name": "VB Mobile - Cliente",
-    "start_url": "/",
-    "theme_color": "#ffffff",
-    "categories": [
-      "business",
-      "productivity",
-      "travel"
-    ],
-    "screenshots": [],
-    "icons": [
-      {
-        "src": "img/logo_vb.png",
-        "type": "image/png",
-        "sizes": "346x234"
-      }
-    ],
-    "shortcuts": [],
-    "lang": "pt"
-  }
+  "background_color": "#ffffff",
+  "description": "Aplicação para acompanhamento e rastreio de mercadorias, histórico de encomendas e gerenciamento de pontos promocionais para clientes VB Express.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "VB Mobile - Cliente",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "VB Mobile - Cliente",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": [
+    "business",
+    "productivity",
+    "travel"
+  ],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "img/logo_vb.png",
+      "type": "image/png",
+      "sizes": "346x234"
+    }
+  ],
+  "shortcuts": [],
+  "lang": "pt"
+}
