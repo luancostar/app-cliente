@@ -17,7 +17,7 @@
   "screenshots": [],
   "icons": [
     {
-      "src": "img/logo-vb-all.png",
+      "src": "img/android/android-launchericon-512-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
