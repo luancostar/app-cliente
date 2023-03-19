@@ -17,7 +17,7 @@
   "screenshots": [],
   "icons": [
     {
-      "src": "windows11/SmallTile.scale-100.png",
+      "src": "./windows11/SmallTile.scale-100.png",
       "sizes": "71x71"
     },
     {
