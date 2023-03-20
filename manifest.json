@@ -1,14 +1,15 @@
-{
+{ 
+  "lang": "pt",
   "background_color": "#ffffff",
   "description": "Aplicação para acompanhamento e rastreio de mercadorias, histórico de encomendas e gerenciamento de pontos promocionais para clientes VB Express.",
   "dir": "ltr",
   "display": "standalone",
-  "name": "VB Mobile - Cliente",
+  "name": "VB Mobile Cliente",
   "orientation": "any",
   "scope": "/",
-  "short_name": "VB Mobile - Cliente",
-  "start_url": "/",
-  "theme_color": "#ffffff",
+  "short_name": "VB Mobile Cliente",
+  "start_url": ".",
+  "theme_color": "#000",
   "categories": [
     "business",
     "productivity",
