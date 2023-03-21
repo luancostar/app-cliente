@@ -79,7 +79,7 @@ body {
 .md-stepper-horizontal .md-step.done .md-step-circle:before {
 	font-family:'FontAwesome';
 	font-weight:100;
-	content: "\f00c";
+	content: "\f49e";
 }
 .md-stepper-horizontal .md-step.done .md-step-circle *,
 .md-stepper-horizontal .md-step.editable .md-step-circle * {
@@ -94,7 +94,7 @@ body {
 .md-stepper-horizontal .md-step.editable .md-step-circle:before {
 	font-family:'FontAwesome';
 	font-weight:100;
-	content: "\f040";
+	content: "\f4df";
 }
 .md-stepper-horizontal .md-step .md-step-title {
 	margin-top:16px;
