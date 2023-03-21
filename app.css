@@ -16,6 +16,12 @@ body {
   font-size:16px;
   color:#555555; 
 }
+.text-orders{
+    display: grid;
+}
+#subtext-titles{
+    font-size: 12px;
+}
 .md-stepper-horizontal {
 	display:table;
 	width:100%;
