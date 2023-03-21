@@ -7,48 +7,14 @@
     <title>VB - Cliente</title>
 </head>
 <body>
-    <div class="content">
-        <img src="img/truck.gif" alt="">
-        
-    </div>
-    <div class="text-scene">
-        <img id="no-internet" src="img/sem-internet.png" alt="Sem Conexão com a Internet"><p id="no-rede-msg">Opa! Você está sem conexão com a internet, tente novamente.
-        </p>
-    </div>
-    <style>
-        html{
-            height: 100%;
-        }
-        body{
-            height: 100%;
-            display: grid;
-            align-items: center;
-            justify-content: center;
-            background-color: #F2F2F2;
-        }
-        .content{
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        img{
-            width: 100%;
-        }
-        .text-scene{
-            display: grid;
-            margin-top: -30%;
-        }
-        #no-internet{
-            width: 30%;
-    justify-self: center;
-        }
-        #no-rede-msg{
-            font-family: sans-serif;
-    color: #f7713f;
-    font-weight: 700;
-    text-align: center;
-        }
-    </style>
+    recarregue
+    <button type="button" onClick="recarregarAPagina()">Atualizar!</button>
+
+    <script>
+        function recarregarAPagina(){
+            window.location.reload();
+        } 
+        </script>
 </body>
+
 </html>
