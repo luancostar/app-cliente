@@ -9,7 +9,14 @@
 </head>
 <body>
     <div class="offline-msg">
-        <p><i class="fas fa-wifi"></i></p>
+        <p> <div class="container">
+            <svg viewBox="10 10 80 80">    
+              <path d="M 50,70 Q 50,70 50,70" />
+              <path d="M 40,60 Q 50,50 60,60" />
+              <path d="M 30,50 Q 50,30 70,50" />
+              <path d="M 20,40 Q 50,10 80,40" />
+            </svg>
+          </div></p>
     <p>Ops! Você está sem conexão de rede. Deseja tentar atualizar ?</p>
     <button type="button" onClick="recarregarAPagina()">Atualizar!</button>
 </div>
@@ -19,6 +26,83 @@
         } 
         </script>
         <style>
+            .container {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+svg {
+
+  width: 70%;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+  -webkit-transform: scale(1);
+  transform: scale(1);
+
+}
+svg path {
+  fill: none;
+  stroke: #50514F;
+  stroke-width: 10px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+svg path:nth-of-type(1) {
+  animation: highlight-1 3s infinite;
+}
+svg path:nth-of-type(2) {
+  animation: highlight-2 3s infinite;
+}
+svg path:nth-of-type(3) {
+  animation: highlight-3 3s infinite;
+}
+svg path:nth-of-type(4) {
+  animation: highlight-4 3s infinite;
+}
+
+@keyframes scale-logo {
+  0%, 100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+  }
+}
+@keyframes highlight-1 {
+  0%, 20%, 100% {
+    stroke: #50514F;
+  }
+  30%, 75% {
+    stroke: #247BA0;
+  }
+}
+@keyframes highlight-2 {
+  0%, 30%, 100% {
+    stroke: #50514F;
+  }
+  40%, 75% {
+    stroke: #247BA0;
+  }
+}
+@keyframes highlight-3 {
+  0%, 40%, 100% {
+    stroke: #50514F;
+  }
+  50%, 75% {
+    stroke: #247BA0;
+  }
+}
+@keyframes highlight-4 {
+  0%, 50%, 100% {
+    stroke: #50514F;
+  }
+  60%, 75% {
+    stroke: #247BA0;
+  }
+}
             html{
                 height: 100%;
             }
@@ -26,7 +110,7 @@
                 text-align: center;
                 font-family: sans-serif;
                 font-weight: 600;
-                color: orangered;
+                color: #4a6dcf;
             }
             body{
                 height: 90%;
