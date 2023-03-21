@@ -4,17 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7a8d54eabc.js" crossorigin="anonymous"></script>
     <title>VB - Cliente</title>
 </head>
 <body>
-    recarregue
+    <div class="offline-msg">
+        <p><i class="fas fa-wifi"></i></p>
+    <p>Ops! Você você está sem conexão de rede. Deseja tentar atualizar ?</p>
     <button type="button" onClick="recarregarAPagina()">Atualizar!</button>
-
+</div>
     <script>
         function recarregarAPagina(){
             window.location.reload();
         } 
         </script>
+        <style>
+            html{
+                height: 100%;
+            }
+            p{
+                text-align: center;
+                font-family: sans-serif;
+                font-weight: 600;
+                color: orangered;
+            }
+            body{
+                height: 90%;
+                display: flex;
+                align-items: center;
+                justify-content: center
+            }
+            .offline-msg{
+                display: grid;
+            }
+            button{
+                width: 80%;
+                justify-self: center;
+                background: transparent;
+                border: 2px solid #4444e7;
+                border-radius: 10px;
+                color: #4444e7;
+                padding: 5px;
+                width: 10rem;
+                margin-top: 3rem;
+            }
+            button:hover{
+                transform: scale(1.1);
+            }
+            i{
+                font-size: 8rem;
+            }
+        </style>
 </body>
 
 </html>
