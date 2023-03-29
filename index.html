@@ -17,7 +17,32 @@
         }
     </script>
 </head>
-<body>
+<script>
+
+    function carregar() {
+        document.getElementById("teste").style.display="block";
+        document.getElementById("loading-content").style.display="none";
+    }
+    </script>
+    
+<body style="background-color: #F2F2F2;" onLoad="setTimeout(carregar, 8000);">
+    <div id="loading-content" style="height: 100vw">
+        <div class="anima-truck" style="height: 65vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;">
+            <img src="img/truck.gif" alt="">
+        </div>
+        <div class="logo-vb" style="display: flex;
+    align-items: center;
+    justify-content: center;"> 
+    <div style="display: grid;"> 
+            <img style="width:10rem" src="img/vblogo-e.png" alt="">
+            <p style="font-family: 'Alkatra', cursive;text-align: center; color: orange;font-weight: bold;font-size: 20px;">Vai Bem, Vem Bem!</p>
+        </div>
+        </div>
+    </div>
+    <div ID="teste" style="display:none;"> 
     <nav>
         <div class="logo-name">
             <div class="logo-image">
@@ -217,7 +242,7 @@
                             <div class="md-step-bar-right"></div>
                           </div>
                       </div>
-                    
+                    </div>
                 </div>
             </div>
         </div>

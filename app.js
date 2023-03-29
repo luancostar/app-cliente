@@ -1,3 +1,6 @@
+
+//Modo light e dark para aplicação iOS e Android
+
 const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");
       sidebar = body.querySelector("nav");
