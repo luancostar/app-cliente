@@ -20,8 +20,8 @@
                 
                 if(mysqli_num_rows($resultado) == 1):
                     $dados = mysqli_fetch_array($resultado);
-                    $_SESSION['logado'] = true;
-                    $_SESSION['id_usuario'] = $dados['id'];
+                    $_SESSION['cliente_logado'] = true;
+                    $_SESSION['id_cliente'] = $dados['id'];
 					          header('Location: index.php');
 				        else:
                     $erros[] = "<center>Login Inválido!</center>";

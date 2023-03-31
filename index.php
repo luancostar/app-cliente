@@ -1,9 +1,19 @@
 <?php
 include_once("conexao.php");
+@session_start();
+if (!isset($_SESSION['cliente_logado'])) :
+	header('Location: login.php');
+endif;
+
+$id_cliente = $_SESSION['id_cliente'];
+$sql = "SELECT * FROM cadastro_cliente WHERE id = '$id_cliente'";
+$resultado = mysqli_query($conn, $sql);
+while($dados = mysqli_fetch_array($resultado)){
+    $clientes[] = $dados;
+}
 
 ?>
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -70,7 +80,7 @@ include_once("conexao.php");
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a href="logout.php">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Sair</span>
                 </a></li>
@@ -197,43 +207,46 @@ include_once("conexao.php");
                 </div>
                 </div>
 
-                <div class="activity-data">
-                    <div class="md-stepper-horizontal orange">
-                        <div class="md-step active done">
-                          <div class="md-step-circle"><span>1</span></div>
-                          <div class="md-step-title">Postado</div>
-                          <div class="md-step-optional">Item recebido</div>
-                          <div class="md-step-bar-left"></div>
-                          <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step active editable">
-                          <div class="md-step-circle"><span>2</span></div>
-                          <div class="md-step-title">Em Trânsito</div>
-                          <div class="md-step-optional">Para a base mais próxima</div>
-                          <div class="md-step-bar-left"></div>
-                          <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step active">
-                          <div class="md-step-circle"><span> <i class="fas fa-truck-loading"></i></span></div>
-                          <div class="md-step-title">Chegou na Base</div>
-                          <div class="md-step-bar-left"></div>
-                          <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step">
-                          <div class="md-step-circle"><span><i class="fas fa-shipping-fast"></i></span></div>
-                          <div class="md-step-title">Saiu para Entrega</div>
-                          <div class="md-step-bar-left"></div>
-                          <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step">
-                            <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
-                            <div class="md-step-title">Entregue</div>
+                <?php
+                foreach($clientes as $clientes2){?>    
+                    <div class="activity-data">
+                        <div class="md-stepper-horizontal orange">
+                            <div class="md-step active done">
+                            <div class="md-step-circle"><span>1</span></div>
+                            <div class="md-step-title">Postado</div>
+                            <div class="md-step-optional">Item recebido</div>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
-                          </div>
-                      </div>
-                    
-                </div>
+                            </div>
+                            <div class="md-step active editable">
+                            <div class="md-step-circle"><span>2</span></div>
+                            <div class="md-step-title">Em Trânsito</div>
+                            <div class="md-step-optional">Para a base mais próxima</div>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step active">
+                            <div class="md-step-circle"><span> <i class="fas fa-truck-loading"></i></span></div>
+                            <div class="md-step-title">Chegou na Base</div>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step">
+                            <div class="md-step-circle"><span><i class="fas fa-shipping-fast"></i></span></div>
+                            <div class="md-step-title">Saiu para Entrega</div>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step">
+                                <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
+                                <div class="md-step-title">Entregue</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                }?>    
             </div>
         </div>
     </section>
