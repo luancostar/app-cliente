@@ -3,11 +3,12 @@
 Aplicação voltada para resolução de demandas dos clientes VB Express. Acompanhamento de coletas, rastreio de mercadorias, acesso aos serviços de atendimento ao cliente
 e ações promocionais futuras.
 ## 📱  Mockups
+<div>
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp1.png">
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp4.png">
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp3.png">
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp2.png">
- 
+</div>
 
 ## 🚀 Começando
 
