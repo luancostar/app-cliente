@@ -2,7 +2,7 @@
 
 Aplicação voltada para resolução de demandas dos clientes VB Express. Acompanhamento de coletas, rastreio de mercadorias, acesso aos serviços de atendimento ao cliente
 e ações promocionais futuras.
-### 📱 Mockups
+## 📱 Mockups
 
 ## 🚀 Começando
 
