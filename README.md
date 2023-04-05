@@ -51,9 +51,9 @@ Nós utilizamos o github.com para controle de versão
 
 Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
 
-* **Rafael Costa** - *Desenvolvedor Back-End* - [umdesenvolvedor](https://github.com/linkParaPerfil)
-* **Moisés Sousa** - *Desenvolvedor Back-End* - [umdesenvolvedor](https://github.com/linkParaPerfil)
-* **Luan Rodrigues** - *Desenvolvedor Front-End* - [fulanodetal](https://github.com/linkParaPerfil)
+* **Rafael Costa** - *Desenvolvedor Back-End* - [umdesenvolvedor](https://github.com/R-Rafael-Costa)
+* **Moisés Sousa** - *Desenvolvedor Back-End* - [umdesenvolvedor](https://github.com/sousam02)
+* **Luan Rodrigues** - *Desenvolvedor Front-End* - [fulanodetal](https://github.com/luancostar)
 
 
 ## 📄 Licença
