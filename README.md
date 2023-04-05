@@ -3,6 +3,18 @@
 Aplicação voltada para resolução de demandas dos clientes VB Express. Acompanhamento de coletas, rastreio de mercadorias, acesso aos serviços de atendimento ao cliente
 e ações promocionais futuras.
 ## 📱  Mockups
+<table>
+  <tr>
+    <td valign="top"><img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp1.png"></td>
+    <td valign="top"><img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp4.png"></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td valign="top"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact&show_icons=true&title_color=ffffff&icon_color=34abeb&text_color=daf7dc&bg_color=151515"/></td>
+    <td valign="top"><img src="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&title_color=ffffff&icon_color=34abeb&text_color=daf7dc&bg_color=151515"/></td>
+  </tr>
+</table>
 <div>
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp1.png">
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp4.png">
@@ -11,7 +23,7 @@ e ações promocionais futuras.
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp3.png">
 </div>
 <div>
-<img style="margin-left: 25% !important;" src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp2.png">
+<img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp2.png">
 </div>
 
 ## 🚀 Começando
