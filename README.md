@@ -4,9 +4,9 @@ Aplicação voltada para resolução de demandas dos clientes VB Express. Acompa
 e ações promocionais futuras.
 ## 📱  Mockups
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp1.png">
-<img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp2.png">
-<img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp3.png">
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp4.png">
+<img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp3.png">
+<img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp2.png">
  
 
 ## 🚀 Começando
