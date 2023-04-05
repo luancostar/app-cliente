@@ -11,7 +11,7 @@ e ações promocionais futuras.
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp3.png">
 </div>
 <div>
-<img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp2.png">
+<img style="margin-left: 25% !important;" src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp2.png">
 </div>
 
 ## 🚀 Começando
