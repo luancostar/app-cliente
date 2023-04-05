@@ -49,7 +49,7 @@ Nós utilizamos o github.com para controle de versão
 
 ## ✒️ Autores
 
-Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
+Responsáveis pelo desenvolvimento do Projeto
 
 * **Rafael Costa** - *Tech Lead e Desenvolvedor Back-End* - [Perfil Git](https://github.com/R-Rafael-Costa)
 * **Moisés Sousa** - *Desenvolvedor Back-End* - [Perfil Git](https://github.com/sousam02)
