@@ -32,7 +32,7 @@ phpMyAdmin - 5.2.0 ( ou 5.2.1 )
 ## 🛠️ Construído com
 
 * [HTML 5](https://www.w3schools.com/html/) - Linguagem de Marcação utilizada na estruturação da interface
-* [CSS 3](https://www.w3schools.com/css/css_intro.asp) - Linguagem de Estilização utilizada para posicionamento, responsividade e aplicação de design do projeto
+* [CSS 3](https://www.w3schools.com/css/css_intro.asp) - Linguagem de Estilização (posicionamento, responsividade e aplicação de design do projeto.)
 * [JS - ECMAScript 2022](https://262.ecma-international.org/) - Linguagem de manipulação utilizada na aplicação
 * [JQuery - VER.](https://jquery.com/) - Framework usada para manipulação de DOM
 * [PWA](https://web.dev/progressive-web-apps/) - Linguagem e modelo de instação de aplicações web em app nativo
