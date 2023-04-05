@@ -20,12 +20,12 @@ Node.js ver 18.15
 ```
 Acerca de servidores e base de dados.
 
-...
+```
 
 Base de dados MariaDB 10.4.24
 phpMyAdmin - 5.2.0 ( ou 5.2.1 )
 @Testes APACHE - 2.4.53
-...
+```
 
  
 
