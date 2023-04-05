@@ -7,16 +7,11 @@ e ações promocionais futuras.
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp1.png">
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp4.png">
 </div>
-<div class="imgdiv">
+<div style="display: grid; justify-items: center;" class="imgdiv">
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp3.png">
 <img src="https://raw.githubusercontent.com/luancostar/app-cliente/master/assets/mockup/mkp2.png">
 </div>
-<style>
-.imgdiv{
-display: grid;
-    justify-items: center;
-    }
- </style>
+
 ## 🚀 Começando
 
 Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
