@@ -35,8 +35,8 @@ phpMyAdmin - 5.2.0 ( ou 5.2.1 )
 * [CSS 3](https://www.w3schools.com/css/css_intro.asp) - Linguagem de Estilização utilizada para posicionamento, responsividade e aplicação de design do projeto
 * [JS - ECMAScript 2022](https://262.ecma-international.org/) - Linguagem de manipulação utilizada na aplicação
 * [JQuery - VER.](https://jquery.com/) - Framework usada para manipulação de DOM
-* [PWA](https://en.wikipedia.org/wiki/Progressive_web_app#:~:text=A%20progressive%20web%20application%20(PWA,including%20desktop%20and%20mobile%20devices.) - Linguagem de Marcação utilizada na estruturação da interface
-* [TWA](https://developer.chrome.com/docs/android/trusted-web-activity/) - Linguagem de Marcação utilizada na estruturação da interface
+* [PWA](https://en.wikipedia.org/wiki/Progressive_web_app#:~:text=A%20progressive%20web%20application%20(PWA,including%20desktop%20and%20mobile%20devices.) - Linguagem e modelo de instação de aplicações web em app nativo.
+*  [TWA](https://developer.android.com/reference/androidx/browser/trusted/TrustedWebActivityIntentBuilder) - Criação de arquivo único para instalação da aplicação (APK) em dispositivos android e dispositivos iOS.
 * [PHP 7.4](https://www.php.net/downloads) - Linguagem Backend utilizada na aplicação
 * [MySQL](https://www.mysql.com/) - Armazenamento e manipulação de dados da aplicação
 
