@@ -22,7 +22,7 @@
                     $dados = mysqli_fetch_array($resultado);
                     $_SESSION['cliente_logado'] = true;
                     $_SESSION['id_cliente'] = $dados['id'];
-					          header('Location: index.php');
+					          header('Location: app.html');
 				        else:
                     $erros[] = "<center>Login Inválido!</center>";
                 endif;    
@@ -75,7 +75,6 @@
         
       </div>
       <input type="submit" class="rounded-button login-cta" value="Login">
-        </form>
       <?php
       if(!empty($erros)):
             foreach($erros as $erro):
@@ -83,7 +82,8 @@
               endforeach;
       endif;    
     ?>
-  </form>
+    </form>
+ 
       <div class="register-div"><p>Não consegue logar?</p> <a href="#" class="link create-account">Clique aqui</a></div>
     </div>
 
