@@ -7,24 +7,26 @@
     <title>VB - Cliente</title>
     <link rel="icon" href="img/logo_vb.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="app.css">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/style_app.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://kit.fontawesome.com/7a8d54eabc.js" crossorigin="anonymous"></script>
     <script>
         if (typeof navigator.serviceWorker !== 'undefined'){
-            navigator.serviceWorker.register('pwabuilder-sw.js')
+            navigator.serviceWorker.register('../pwabuilder-sw.js')
         }
     </script>
 </head>
-<script>
 
-    function carregar() {
-        document.getElementById("teste").style.display="block";
-        document.getElementById("loading-content").style.display="none";
-    }
-    </script>
-    
+<!-- Evento de loading (animacao pós login) -->
+<script>
+function carregar() {
+    document.getElementById("teste").style.display="block";
+    document.getElementById("loading-content").style.display="none";
+}
+</script>
+
+
 <body style="background-color: #F2F2F2;" onLoad="setTimeout(carregar, 8000);">
     <div id="loading-content" style="height: 100vw">
         <div class="anima-truck" style="height: 65vh;
@@ -32,13 +34,13 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;">
-            <img style="width: 22rem;"src="img/truck.gif" alt="">
+            <img style="width: 22rem;"src="../img/truck.gif" alt="">
         </div>
         <div class="logo-vb" style="display: flex;
     align-items: center;
     justify-content: center;"> 
     <div style="display: grid; justify-items:center"> 
-            <img style="width:7rem" src="img/vblogo-e.png" alt="">
+            <img style="width:7rem" src="../img/vblogo-e.png" alt="">
             <p style="font-family: 'Alkatra', cursive;text-align: center; color: orange;font-weight: bold;font-size: 18px;">Vai Bem, Vem Bem!</p>
         </div>
         </div>
@@ -47,7 +49,7 @@
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-            <img src="img/logo_vb.png" alt="">
+            <img src="../img/logo_vb.png" alt="">
 
             </div>
             <span class="logo_name">Cliente</span>
@@ -248,6 +250,6 @@
             </div>
         </div>
     </section>
- <script src="app.js"></script>
+ <script src="../js/app.js"></script>
 </body>
 </html>
