@@ -58,7 +58,7 @@
       <form action="" name="loginform" method="post"> 
       <div class="login-form-group"> 
         <label for="email">CNPJ/CPF: <span class="required-star">*</span></label>
-        <input placeholder="CNPJF ou CPF do cliente" id="myInput" maxlength="18" required>
+        <input name="cnpj_cpf" placeholder="CNPJF ou CPF do cliente" id="myInput" maxlength="18" required>
         <input id="cnpj" style="display: none">
         <input id="cpf" style="display: none">
       </div>
@@ -74,8 +74,7 @@
         </div>
         
       </div>
-      <div>
-      <input type="submit" class="rounded-button login-cta" value="Login">
+      <input name="btn-entrar" type="submit" class="rounded-button login-cta" value="Login">
       <?php
       if(!empty($erros)):
             foreach($erros as $erro):
@@ -83,7 +82,6 @@
               endforeach;
       endif;    
     ?>
-    </div>
     </form>
  
       <div class="register-div"><p>Não consegue logar?</p> <a href="#" class="link create-account">Clique aqui</a></div>
