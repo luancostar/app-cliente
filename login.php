@@ -24,17 +24,17 @@
                     $_SESSION['id_cliente'] = $dados['id'];
 					          header('Location: index.php');
 				        else:
-                    $erros[] = "<center>Login Inválido!</center>";
+                    $erros[] = "<center>Login Inválido!<p></p></center>";
                 endif;    
             else:
-                $erros[] = "<center>Login Inválido!</center>";
+                $erros[] = "center><Login Inválido!</center>";
             endif;    
         endif;
     endif;  
 ?>
 
 <!DOCTYPE html>
-<html lang="PT-br">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <link rel="shortcut icon" href="img/favicon.png">

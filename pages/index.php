@@ -75,6 +75,7 @@
         
       </div>
       <input name="btn-entrar" type="submit" class="rounded-button login-cta" value="Login">
+  
       <?php
       if(!empty($erros)):
             foreach($erros as $erro):
@@ -82,6 +83,7 @@
               endforeach;
       endif;    
     ?>
+   
     </form>
  
       <div class="register-div"><p>Não consegue logar?</p> <a href="#" class="link create-account">Clique aqui</a></div>
