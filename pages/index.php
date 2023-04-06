@@ -1,5 +1,5 @@
 <?php
-    require_once 'conexao.php';
+    require_once '../conexao.php';
 
 	  session_start();
     
@@ -38,8 +38,8 @@
   <meta charset="UTF-8">
   <title>VB Cliente | Login</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.css'>
-  <link rel="stylesheet" href="/css/style_login.css">
-  <link rel="icon" sizes="16x16" href="/assets/img/logo_vb_branca.png">
+  <link rel="stylesheet" href="../css/style_login.css">
+  <link rel="icon" sizes="16x16" href="../assets/img/logo_vb_branca.png">
 </head>
 <body>
  
@@ -47,20 +47,22 @@
   <div class="login-form">
     <div class="login-form-inner">
       <div class="logo">
-        <img src="/assets/img/login-img.jpg" alt="">
+        <img src="../assets/img/login-img.jpg" alt="">
       </div>
  
  
 
       <div class="sign-in-seperator">
-        <span><img id="img-logo" src="/assets/img/logo_vb.png" alt=""> Mobile</span>
+        <span><img id="img-logo" src="../assets/img/logo_vb.png" alt=""> Mobile</span>
+      </div>
+      <form action="" name="loginform" method="post"> 
+      <div class="login-form-group"> 
+        <label for="email">CNPJ/CPF: <span class="required-star">*</span></label>
+        <input placeholder="CNPJF ou CPF do cliente" id="myInput" maxlength="18" required>
+        <input id="cnpj" style="display: none">
+        <input id="cpf" style="display: none">
       </div>
 
-      <div class="login-form-group">
-        <form action="" name="loginform" method="post"></form>
-        <label for="email">CNPJ/CPF: <span class="required-star">*</span></label>
-        <input required name="cnpj_cpf" type="number" placeholder="insira CNPJ ou CPF" id="email">
-      </div>
       <div class="login-form-group">
         <label for="pwd">Senha: <span class="required-star">*</span></label>
         <input required name="senha" autocomplete="off" type="password" placeholder="Senha do cliente" id="pwd">
@@ -70,11 +72,10 @@
         <div class="custom-check">
           <input autocomplete="off" type="checkbox" checked id="remember"><label for="remember">Lembrar Login</label>
         </div>
-
- 
+        
       </div>
       <input type="submit" class="rounded-button login-cta" value="Login">
-      <a href="#" class="rounded-button login-cta">Login</a>
+        </form>
       <?php
       if(!empty($erros)):
             foreach($erros as $erro):
@@ -92,7 +93,7 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide color-1">
           <div id="different-slide" class="slide-image">
-            <img id="slide-img-1" src="/assets/img/suporte.gif" loading="lazy" alt="" />
+            <img id="slide-img-1" src="../assets/img/suporte.gif" loading="lazy" alt="" />
           </div>
           <div class="slide-content">
             <h2>Atendimento especializado 💬</h2>
@@ -101,7 +102,7 @@
         </div>
         <div class="swiper-slide color-1">
           <div id="different-slide" class="slide-image">
-            <img id="slide-img-1" src="/assets/img/suporte2.gif" loading="lazy" alt="" />
+            <img id="slide-img-1" src="../assets/img/suporte2.gif" loading="lazy" alt="" />
           </div>
           <div class="slide-content">
             <h2>Avalie seus serviços VB 🥇</h2>
@@ -111,7 +112,7 @@
 
         <div class="swiper-slide color-1">
           <div id="different-slide" class="slide-image">
-            <img id="slide-img-1" src="/assets/img/suporte3.gif" loading="lazy" alt="" />
+            <img id="slide-img-1" src="../assets/img/suporte3.gif" loading="lazy" alt="" />
           </div>
           <div class="slide-content">
             <h2>Agendamento hábil de coletas 🚚</h2>
@@ -126,7 +127,10 @@
 </div>
 <!-- scripts e libs -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.0/js/swiper.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
   <script  src="../js/carousel-log.js"></script>
+  <script src="../js/mask-cnpj-cpf.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Alkatra&family=Rajdhani:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 :root {
   --bodybg: #dcdefe;
   --primary-color: #fb8e34;
@@ -10,11 +11,21 @@
   --slider-bg: #eff3ff;
   --login-cta-hover: #ff4701d1;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
 
+input[type=number] {
+    -moz-appearance:textfield;
+}
 * {
   margin: 0;
   padding: 0;
 }
+ 
 .logo{
   display: flex;
   align-items: center;
@@ -126,15 +137,17 @@ body {
 }
 
 .login-container .login-form .login-form-group input {
-  padding: 13px 20px;
+  padding: 8px 20px;
   box-sizing: border-box;
   border: 1px solid var(--grey);
   border-radius: 50px;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Kanit', sans-serif;
   font-weight: 600;
   font-size: 14px;
   color: var(--text);
   transition: linear 0.2s;
+  text-align: center;
+  font-size: 18px;
 }
 
 .login-container .login-form .login-form-group input:focus {
@@ -249,6 +262,8 @@ body {
   border: 1px solid var(--primary-color);
   margin: 25px 0 35px;
   background: var(--primary-color);
+  cursor: pointer;
+
 }
 
 .login-container .login-form .login-cta:hover {
