@@ -12,6 +12,8 @@ while(@$dados = mysqli_fetch_array($resultado)){
     @$clientes[] = $dados;
 }
 
+@$item = $_POST['item'];
+
 ?>
 <!DOCTYPE html>
 
@@ -34,35 +36,28 @@ while(@$dados = mysqli_fetch_array($resultado)){
 </head>
 
 <!-- Evento de loading (animacao pós login) -->
-<script>
+<!-- <script>
 function carregar() {
     document.getElementById("teste").style.display="block";
     document.getElementById("loading-content").style.display="none";
 }
-</script>
+</script> -->
 
 <body style="background-color: #F2F2F2;" onLoad="setTimeout(carregar, 8000);">
-    <div id="loading-content" style="height: 100vw">
-        <div class="anima-truck" style="height: 65vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;">
+    <!-- <div id="loading-content" style="height: 100vw">
+        <div class="anima-truck" style="height: 65vh;display: flex;align-items: center;justify-content: center;overflow: hidden;">
             <img style="width: 22rem;"src="../img/truck.gif" alt="">
         </div>
-        <div class="logo-vb" style="display: flex;
-            align-items: center;
-            justify-content: center;"> 
+        <div class="logo-vb" style="display: flex;align-items: center;justify-content: center;"> 
             <div style="justify-items:center"> 
-            <img style="width:7rem;margin-left: 1rem;" src="../img/vblogo-e.png" alt="">
-            <div class="progress-loader">
-                <div class="progress"></div>
+                <img style="width:7rem;margin-left: 1rem;" src="../img/vblogo-e.png" alt="">
+                <div class="progress-loader">
+                    <div class="progress"></div>
+                </div>
             </div>
-            
-         </div>
         </div>
-    </div>
-    <div ID="teste" style="display:none;"> 
+    </div> -->
+    <!-- <div ID="teste" style="display:none;">  -->
     <nav>
         <div class="logo-name">
             <div class="logo-image">
@@ -76,10 +71,20 @@ function carregar() {
             <ul class="nav-links">
              
                 <li>
+<<<<<<< HEAD
                     <a href="#" onClick="mostrar('exemplo1')">
                     <i class="fas fa-map-marker-alt"></i>
                         <span class="link-name">Rastreio</span>
                     </a>
+=======
+                    <form method="post" action="">
+                        <a href="#">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="hidden" name="item" value="rastreio">
+                            <input type="submit" class="link-name" value="Rastreio" style="background:transparent; border:0px solid transparent">
+                        </a>
+                    </form>    
+>>>>>>> 458cfc63a58b2ddd34f401681833c2acb2b760f3
                 </li>
                 <!--<li>
                     <a href="#">
@@ -100,10 +105,12 @@ function carregar() {
                     </a>
                 </li>-->
                 <li>
-                    <a href="#">
-                        <i class="uil uil-comments"></i>
-                        <span class="link-name">Chat</span>
-                    </a>
+                    <form method="post" action="">
+                        <a href="#">
+                            <i class="uil uil-comments"></i>
+                            <input type="hidden" name="item" value="chat">
+                            <input type="submit" class="link-name" value="Chat" style="background:transparent; border:0px solid transparent">
+                        </a>
                 </li>
                 <!--<li>
                     <a href="#">
@@ -240,6 +247,7 @@ function carregar() {
                     </div>
                 </div>
             </div> -->
+<<<<<<< HEAD
             <div id="exemplo1" class="activity">
                 <div class="title">
                     <i id="icon-1" class="fas fa-map-marked-alt"></i>
@@ -248,45 +256,68 @@ function carregar() {
                     <small id="subtext-titles" class="text">Itens em Rota</small>
                 </div>
                 </div>
+=======
+            <?php
+            if($item == "rastreio"){?>
+                <div class="activity">
+                    <div class="title">
+                        <i id="icon-1" class="fas fa-map-marked-alt"></i>
+                    <div class="text-orders">
+                        <span class="text">Rastreio:</span>
+                        <small id="subtext-titles" class="text">Itens em Rota</small>
+                    </div>
+                    </div>
+>>>>>>> 458cfc63a58b2ddd34f401681833c2acb2b760f3
 
-                <div class="activity-data">
-                    <div class="md-stepper-horizontal orange">
-                        <div class="md-step active done">
-                          <div class="md-step-circle"><span>1</span></div>
-                          <div class="md-step-title">Postado</div>
-                          <div class="md-step-optional">Item recebido</div>
-                          <div class="md-step-bar-left"></div>
-                          <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step active editable">
-                          <div class="md-step-circle"><span>2</span></div>
-                          <div class="md-step-title">Em Trânsito</div>
-                          <div class="md-step-optional">Para a base mais próxima</div>
-                          <div class="md-step-bar-left"></div>
-                          <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step active">
-                          <div class="md-step-circle"><span> <i class="fas fa-truck-loading"></i></span></div>
-                          <div class="md-step-title">Chegou na Base</div>
-                          <div class="md-step-bar-left"></div>
-                          <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step">
-                          <div class="md-step-circle"><span><i class="fas fa-shipping-fast"></i></span></div>
-                          <div class="md-step-title">Saiu para Entrega</div>
-                          <div class="md-step-bar-left"></div>
-                          <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step">
-                            <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
-                            <div class="md-step-title">Entregue</div>
+                    <div class="activity-data">
+                        <div class="md-stepper-horizontal orange">
+                            <div class="md-step active done">
+                            <div class="md-step-circle"><span>1</span></div>
+                            <div class="md-step-title">Postado</div>
+                            <div class="md-step-optional">Item recebido</div>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
-                          </div>
-                      </div>
+                            </div>
+                            <div class="md-step active editable">
+                            <div class="md-step-circle"><span>2</span></div>
+                            <div class="md-step-title">Em Trânsito</div>
+                            <div class="md-step-optional">Para a base mais próxima</div>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step active">
+                            <div class="md-step-circle"><span> <i class="fas fa-truck-loading"></i></span></div>
+                            <div class="md-step-title">Chegou na Base</div>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step">
+                            <div class="md-step-circle"><span><i class="fas fa-shipping-fast"></i></span></div>
+                            <div class="md-step-title">Saiu para Entrega</div>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
+                            </div>
+                            <div class="md-step">
+                                <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
+                                <div class="md-step-title">Entregue</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php
+            }elseif($item == 'chat'){
+            
+            
+            
+            //Código do chat aqui!!';
+            
+            
+            
+            
+            }?>    
         </div>
     </section>
  <script src="../js/app.js"></script>
