@@ -76,7 +76,7 @@ function carregar() {
             <ul class="nav-links">
              
                 <li>
-                    <a href="#">
+                    <a href="#" onClick="mostrar('exemplo1')">
                     <i class="fas fa-map-marker-alt"></i>
                         <span class="link-name">Rastreio</span>
                     </a>
@@ -132,7 +132,15 @@ function carregar() {
             </ul>
         </div>
     </nav>
+    <div class="activity"> 
+    <section class="chat-geral">
+        <div class="chat-header">
+            <div class="chat-content">
 
+            </div>
+        </div>
+    </section>
+    </div>
     <section class="dashboard">
  
         <div class="top">
@@ -232,7 +240,7 @@ function carregar() {
                     </div>
                 </div>
             </div> -->
-            <div class="activity">
+            <div id="exemplo1" class="activity">
                 <div class="title">
                     <i id="icon-1" class="fas fa-map-marked-alt"></i>
                 <div class="text-orders">
@@ -282,5 +290,6 @@ function carregar() {
         </div>
     </section>
  <script src="../js/app.js"></script>
+ <script src="../js/show.js"></script>
 </body>
 </html>
