@@ -1,11 +1,16 @@
 <?php
     require_once '../conexao.php';
 
-	  session_start();
+	session_start();
+
+    @$cnpj_cpf_replace = str_replace('.','', $_POST['cnpj_cpf']);
+    $cnpj_cpf_replace2 = str_replace('-','', $cnpj_cpf_replace);
+    $cnpj_cpf_final = str_replace('/','', $cnpj_cpf_replace2);
+
     
     if(isset($_POST['btn-entrar'])):
         $erros = array();
-        @$cnpj_cpf = mysqli_escape_string($conn, $_POST['cnpj_cpf']);
+        @$cnpj_cpf = mysqli_escape_string($conn, $cnpj_cpf_final);
         $senha = mysqli_escape_string($conn, $_POST['senha']);
 		        
         if(empty($cnpj_cpf) or empty($senha)):
@@ -22,7 +27,7 @@
                     $dados = mysqli_fetch_array($resultado);
                     $_SESSION['cliente_logado'] = true;
                     $_SESSION['id_cliente'] = $dados['id'];
-					          header('Location: app.html');
+					          header('Location: app.php');
 				        else:
                     $erros[] = "<center>Login Inválido!</center>";
                 endif;    

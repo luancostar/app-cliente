@@ -1,4 +1,18 @@
- 
+<?php
+include_once("../conexao.php");
+@session_start();
+if (!isset($_SESSION['cliente_logado'])) :
+	header('Location: index.php');
+endif;
+
+$id_cliente = $_SESSION['id_cliente'];
+$sql = "SELECT * FROM cadastro_cliente WHERE id = '$id_cliente'";
+$resultado = mysqli_query($conn, $sql);
+while($dados = mysqli_fetch_array($resultado)){
+    $clientes[] = $dados;
+}
+
+?>
 <!DOCTYPE html>
 
 <html lang="pt-br">
@@ -85,7 +99,7 @@ function carregar() {
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a href="../logout.php">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Sair</span>
                 </a></li>
