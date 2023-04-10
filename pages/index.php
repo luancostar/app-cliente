@@ -18,7 +18,6 @@
         else:    
             $sql = "SELECT cnpj_cpf FROM cadastro_clientes WHERE cnpj_cpf = '$cnpj_cpf' AND status <> 0";
             $resultado = mysqli_query($conn, $sql);
-            
             if(mysqli_num_rows($resultado) > 0):
                 $sql = "SELECT * FROM cadastro_clientes WHERE cnpj_cpf = '$cnpj_cpf' AND senha = '$senha'";
                 $resultado = mysqli_query($conn, $sql);
