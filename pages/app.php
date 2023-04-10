@@ -8,8 +8,8 @@ endif;
 $id_cliente = $_SESSION['id_cliente'];
 $sql = "SELECT * FROM cadastro_cliente WHERE id = '$id_cliente'";
 $resultado = mysqli_query($conn, $sql);
-while($dados = mysqli_fetch_array($resultado)){
-    $clientes[] = $dados;
+while(@$dados = mysqli_fetch_array($resultado)){
+    @$clientes[] = $dados;
 }
 
 ?>
@@ -19,7 +19,7 @@ while($dados = mysqli_fetch_array($resultado)){
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>VB - Cliente</title>
+    <title>VB | Cliente</title>
     <link rel="icon" href="img/logo_vb.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="../manifest.json">
@@ -40,7 +40,6 @@ function carregar() {
     document.getElementById("loading-content").style.display="none";
 }
 </script>
-
 
 <body style="background-color: #F2F2F2;" onLoad="setTimeout(carregar, 8000);">
     <div id="loading-content" style="height: 100vw">
@@ -76,30 +75,43 @@ function carregar() {
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
-                    <i class="uil uil-estate"></i>
-                    <span class="link-name">Dashboards</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Ticket</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="uil uil-chart"></i>
-                    <span class="link-name">Histórico</span>
-                </a></li>
-                <!-- <li><a href="#">
-                    <i class="uil uil-thumbs-up"></i>
-                    <span class="link-name">Elogios e Reclamações</span>
-                </a></li> -->
-                <li><a href="#">
-                    <i class="uil uil-comments"></i>
-                    <span class="link-name">Fale Conosco</span>
-                </a></li>
-                <!-- <li><a href="#">
-                    <i class="uil uil-share"></i>
-                    <span class="link-name">Share</span>
-                </a></li> -->
+                <!-- 
+                <li>
+                    <a href="#">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Dashboards</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uil uil-files-landscapes"></i>
+                        <span class="link-name">Ticket</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uil uil-chart"></i>
+                        <span class="link-name">Histórico</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uil uil-thumbs-up"></i>
+                        <span class="link-name">Elogios e Reclamações</span>
+                    </a>
+                </li>-->
+                <li>
+                    <a href="#">
+                        <i class="uil uil-comments"></i>
+                        <span class="link-name">Chat</span>
+                    </a>
+                </li>
+                <!--<li>
+                    <a href="#">
+                        <i class="uil uil-share"></i>
+                        <span class="link-name">Share</span>
+                    </a>
+                </li>-->
             </ul>
             
             <ul class="logout-mode">
@@ -135,7 +147,7 @@ function carregar() {
             </div>
         </div>
 
-        <div class="dash-content">
+        <!-- <div class="dash-content">
             <div class="overview">
                 <div class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
@@ -160,9 +172,9 @@ function carregar() {
                         <span id="text-rastreio" class="text">02 Entregas em Rota</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="activity">
+            <!-- <div class="activity">
                 <div class="title">
                     <i class="uil uil-clock-three"></i>
                     <span class="text">Últimas Postagens:</span>
@@ -222,7 +234,7 @@ function carregar() {
                         <span style="color: #00b500c7"class="data-list">No Prazo</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="activity">
                 <div class="title">
                     <i class="fas fa-map-marked-alt"></i>
