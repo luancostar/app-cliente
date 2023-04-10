@@ -10,14 +10,14 @@
 	$servidor = "localhost";
 	$usuario = "root";
 	$senha = "";
-	$dbname = "cadastro_clientes";
+	$dbname = "vb-virtual";
 	
 	//Criar a conexão
 	$conn = mysqli_connect($servidor, $usuario, $senha, $dbname);
 
 	function abrirBanco(){
 		// $conexao = new mysqli ("localhost:3306","called63_vb","123456","called63_vb");
-		$conexao = new mysqli ("localhost","root","","cadastro_clientes");
+		$conexao = new mysqli ("localhost","root","","vb-virtual");
 			return $conexao;
 		}
 

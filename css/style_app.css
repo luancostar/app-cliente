@@ -7,6 +7,16 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+.chat-baloon{
+    width: 5rem;
+    background: red;
+    color: green;
+    height: 5rem;
+    position: fixed;
+    bottom: 60;
+    border-radius: 15rem;
+    right: 20;
+}
 .progress-loader {
     
     left: 50%;

@@ -123,6 +123,9 @@ function carregar() {
     </nav>
 
     <section class="dashboard">
+        <div class="chat-baloon">
+            <img src="" alt="">
+        </div>
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
 
