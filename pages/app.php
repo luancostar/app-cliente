@@ -59,8 +59,7 @@ function carregar() {
                 <div class="progress"></div>
             </div>
             
-            <!-- <p style="font-family: 'Alkatra', cursive;text-align: center; color: orange;font-weight: bold;font-size: 18px;">Vai Bem, Vem Bem!</p> -->
-        </div>
+         </div>
         </div>
     </div>
     <div ID="teste" style="display:none;"> 
@@ -75,14 +74,14 @@ function carregar() {
 
         <div class="menu-items">
             <ul class="nav-links">
-                <!-- 
+             
                 <li>
                     <a href="#">
-                        <i class="uil uil-estate"></i>
-                        <span class="link-name">Dashboards</span>
+                    <i class="fas fa-map-marker-alt"></i>
+                        <span class="link-name">Rastreio</span>
                     </a>
                 </li>
-                <li>
+                <!--<li>
                     <a href="#">
                         <i class="uil uil-files-landscapes"></i>
                         <span class="link-name">Ticket</span>
@@ -135,9 +134,7 @@ function carregar() {
     </nav>
 
     <section class="dashboard">
-        <div class="chat-baloon">
-            <img src="" alt="">
-        </div>
+ 
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
 
@@ -237,7 +234,7 @@ function carregar() {
             </div> -->
             <div class="activity">
                 <div class="title">
-                    <i class="fas fa-map-marked-alt"></i>
+                    <i id="icon-1" class="fas fa-map-marked-alt"></i>
                 <div class="text-orders">
                     <span class="text">Rastreio:</span>
                     <small id="subtext-titles" class="text">Itens em Rota</small>

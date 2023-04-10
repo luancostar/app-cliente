@@ -259,7 +259,12 @@ body.dark::-webkit-scrollbar-thumb:hover,
 body.dark .activity-data::-webkit-scrollbar-thumb:hover{
     background: #3A3B3C;
 }
-
+.activity{
+    margin-top: 5rem;
+}
+#icon-1{
+    font-size: 25px !important;
+}
 nav{
     position: fixed;
     top: 0;
