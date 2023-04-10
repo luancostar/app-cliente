@@ -51,11 +51,15 @@ function carregar() {
             <img style="width: 22rem;"src="../img/truck.gif" alt="">
         </div>
         <div class="logo-vb" style="display: flex;
-    align-items: center;
-    justify-content: center;"> 
-    <div style="display: grid; justify-items:center"> 
-            <img style="width:7rem" src="../img/vblogo-e.png" alt="">
-            <p style="font-family: 'Alkatra', cursive;text-align: center; color: orange;font-weight: bold;font-size: 18px;">Vai Bem, Vem Bem!</p>
+            align-items: center;
+            justify-content: center;"> 
+            <div style="justify-items:center"> 
+            <img style="width:7rem;margin-left: 1rem;" src="../img/vblogo-e.png" alt="">
+            <div class="progress-loader">
+                <div class="progress"></div>
+            </div>
+            
+            <!-- <p style="font-family: 'Alkatra', cursive;text-align: center; color: orange;font-weight: bold;font-size: 18px;">Vai Bem, Vem Bem!</p> -->
         </div>
         </div>
     </div>
