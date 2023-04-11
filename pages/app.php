@@ -71,12 +71,7 @@ function carregar() {
             <ul class="nav-links">
              
                 <li>
-<<<<<<< HEAD
-                    <a href="#" onClick="mostrar('exemplo1')">
-                    <i class="fas fa-map-marker-alt"></i>
-                        <span class="link-name">Rastreio</span>
-                    </a>
-=======
+ 
                     <form method="post" action="">
                         <a href="#">
                             <i class="fas fa-map-marker-alt"></i>
@@ -84,7 +79,7 @@ function carregar() {
                             <input type="submit" class="link-name" value="Rastreio" style="background:transparent; border:0px solid transparent">
                         </a>
                     </form>    
->>>>>>> 458cfc63a58b2ddd34f401681833c2acb2b760f3
+ 
                 </li>
                 <!--<li>
                     <a href="#">
@@ -247,16 +242,7 @@ function carregar() {
                     </div>
                 </div>
             </div> -->
-<<<<<<< HEAD
-            <div id="exemplo1" class="activity">
-                <div class="title">
-                    <i id="icon-1" class="fas fa-map-marked-alt"></i>
-                <div class="text-orders">
-                    <span class="text">Rastreio:</span>
-                    <small id="subtext-titles" class="text">Itens em Rota</small>
-                </div>
-                </div>
-=======
+ 
             <?php
             if($item == "rastreio"){?>
                 <div class="activity">
@@ -267,7 +253,7 @@ function carregar() {
                         <small id="subtext-titles" class="text">Itens em Rota</small>
                     </div>
                     </div>
->>>>>>> 458cfc63a58b2ddd34f401681833c2acb2b760f3
+ 
 
                     <div class="activity-data">
                         <div class="md-stepper-horizontal orange">
@@ -309,16 +295,136 @@ function carregar() {
                 </div>
             <?php
             }elseif($item == 'chat'){
+            echo('<section class="msger">
+            <header class="msger-header">
+              <div class="msger-header-title">
+                <i class="fas fa-comment-alt"></i> VBChat - Procotolo: 20230001
+              </div>
+              <div class="msger-header-options">
+                <span><i class="fas fa-cog"></i></span>
+              </div>
+            </header>
+          
+            <main class="msger-chat">
+              <div class="msg left-msg">
+                <div
+                 class="msg-img"
+                 style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
+                ></div>
+          
+                <div class="msg-bubble">
+                  <div class="msg-info">
+                    <div class="msg-info-name">VB Express</div>
+                    <div class="msg-info-time">12:45</div>
+                  </div>
+          
+                  <div class="msg-text">
+                    Olá! Seja bem-vindo ao atendimento VB Express. 😄
+                  </div>
+                </div>
+              </div>
+          
+              <div class="msg right-msg">
+                <div
+                 class="msg-img"
+                 style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+                ></div>
+          
+                <div class="msg-bubble">
+                  <div class="msg-info">
+                    <div class="msg-info-name">Cliente</div>
+                    <div class="msg-info-time">12:46</div>
+                  </div>
+          
+                  <div class="msg-text">
+                   Opa, preciso de suporte meu patrão!
+                  </div>
+                </div>
+              </div>
+              <div class="msg left-msg">
+              <div
+               class="msg-img"
+               style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
+              ></div>
+        
+              <div class="msg-bubble">
+                <div class="msg-info">
+                  <div class="msg-info-name">VB Express</div>
+                  <div class="msg-info-time">12:45</div>
+                </div>
+        
+                <div class="msg-text">
+                  Olá! Seja bem-vindo ao atendimento VB Express. 😄
+                </div>
+              </div>
+            </div>
+        
+            <div class="msg right-msg">
+              <div
+               class="msg-img"
+               style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+              ></div>
+        
+              <div class="msg-bubble">
+                <div class="msg-info">
+                  <div class="msg-info-name">Cliente</div>
+                  <div class="msg-info-time">12:46</div>
+                </div>
+        
+                <div class="msg-text">
+                 Opa, preciso de suporte meu patrão!
+                </div>
+              </div>
+            </div>
+            <div class="msg left-msg">
+            <div
+             class="msg-img"
+             style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
+            ></div>
+      
+            <div class="msg-bubble">
+              <div class="msg-info">
+                <div class="msg-info-name">VB Express</div>
+                <div class="msg-info-time">12:45</div>
+              </div>
+      
+              <div class="msg-text">
+                Olá! Seja bem-vindo ao atendimento VB Express. 😄
+              </div>
+            </div>
+          </div>
+      
+          <div class="msg right-msg">
+            <div
+             class="msg-img"
+             style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+            ></div>
+      
+            <div class="msg-bubble">
+              <div class="msg-info">
+                <div class="msg-info-name">Cliente</div>
+                <div class="msg-info-time">12:46</div>
+              </div>
+      
+              <div class="msg-text">
+               Opa, preciso de suporte meu patrão!
+              </div>
+            </div>
+          </div>
+            </main>
             
-            
-            
+          <div class="input-form">
+            <form class="msger-inputarea">
+              <input type="text" class="msger-input" placeholder="Escreva sua mensagem...">
+              <button type="submit" class="msger-send-btn">Enviar</button>
+            </form>
+          </div>
+          </section>');
             //Código do chat aqui!!';
-            
-            
-            
-            
+                 
             }?>    
-        </div>
+ 
+        
     </section>
  <script src="../js/app.js"></script>
  <script src="../js/show.js"></script>
