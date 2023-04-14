@@ -80,13 +80,23 @@ function getItensByCliente($cpf_cnpj_cliente)
 }
 
 // Função que recebe movimentações de uma encomenda e um status que deve ser procurado
-function verificaStatusMovimentacao($movimentacoes, $status)
+function buscaMovimentacao($movimentacoes, $status)
 {
     foreach ($movimentacoes as $movimentacao) {
         if ($movimentacao['status'] == $status) {
             echo "<div class='md-step-optional'>" .  date("d/m/Y - H:i", strtotime($movimentacao['data'])) . "</div>";
         }
     }
+}
+
+function verificaStatus($movimentacoes, $status)
+{
+    foreach ($movimentacoes as $movimentacao) {
+        if ($movimentacao['status'] == $status) {
+            return "#3AC148";
+        }
+    }
+    return "#999999";
 }
 ?>
 <!DOCTYPE html>
@@ -373,50 +383,50 @@ function carregar() {
                 <div class="activity-data">
                     <div class="md-stepper-horizontal orange">
                         <div class="md-step active done">
-                            <div style="background: <?=$cor ?>;" class="md-step-circle">
+                            <div style="background: <?= verificaStatus($item, 1); ?>;" class="md-step-circle">
                                 <span>1</span>
                             </div>
                             <div class="md-step-title">Postado</div>
-                            <div id="minhaDiv"  class="md-step-optional">Item recebido
-                            <?php verificaStatusMovimentacao($item, 1); ?>
+                            <div id="minhaDiv" class="md-step-optional">Item recebido
+                                <?php buscaMovimentacao($item, 1); ?>
                             </div>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
                         </div>
                         <div class="md-step active editable">
-                            <div style="background: <?=$cor ?>;" class="md-step-circle">
+                            <div style="background: <?= verificaStatus($item, 2); ?>;" class="md-step-circle">
                                 <span>2</span>
                             </div>
                             <div class="md-step-title">Em Trânsito</div>
                             <div class="md-step-optional">Para a base mais próxima</div>
-                            <?php verificaStatusMovimentacao($item, 2); ?>
+                            <?php buscaMovimentacao($item, 2); ?>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
                         </div>
                         <div class="md-step active">
-                            <div style="background: <?=$cor ?>;" class="md-step-circle">
+                            <div style="background: <?= verificaStatus($item, 3); ?>;" class="md-step-circle">
                                 <span><i class="fas fa-truck-loading"></i></span>
                             </div>
                             <div class="md-step-title">Chegou na Base</div>
-                            <?php verificaStatusMovimentacao($item, 3); ?>
+                            <?php buscaMovimentacao($item, 3); ?>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
                         </div>
                         <div class="md-step">
-                            <div style="background: <?=$cor ?>;" class="md-step-circle">
+                            <div style="background: <?= verificaStatus($item, 4); ?>;" class="md-step-circle">
                                 <span><i class="fas fa-shipping-fast"></i></span>
                             </div>
                             <div class="md-step-title">Saiu para Entrega</div>
-                            <?php verificaStatusMovimentacao($item, 4); ?>
+                            <?php buscaMovimentacao($item, 4); ?>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
                         </div>
                         <div class="md-step">
-                            <div style="background: <?=$cor ?>;" class="md-step-circle">
+                            <div style="background: <?= verificaStatus($item, 5); ?>;" class="md-step-circle">
                                 <span><i class="fas fa-check"></i></span>
                             </div>
                             <div class="md-step-title">Entregue</div>
-                            <?php verificaStatusMovimentacao($item, 5); ?>
+                            <?php buscaMovimentacao($item, 5); ?>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
                         </div>
