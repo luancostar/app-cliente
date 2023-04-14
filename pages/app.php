@@ -16,6 +16,7 @@ if ($resultado->num_rows > 0) {
 @$item = $_POST['item'];
 
 
+
 function getItensByCliente($cpf_cnpj_cliente)
 {
     $itens = array();
@@ -372,17 +373,18 @@ function carregar() {
                 <div class="activity-data">
                     <div class="md-stepper-horizontal orange">
                         <div class="md-step active done">
-                            <div class="md-step-circle">
+                            <div style="background: <?=$cor ?>;" class="md-step-circle">
                                 <span>1</span>
                             </div>
                             <div class="md-step-title">Postado</div>
-                            <div class="md-step-optional">Item recebido</div>
+                            <div id="minhaDiv"  class="md-step-optional">Item recebido
                             <?php verificaStatusMovimentacao($item, 1); ?>
+                            </div>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
                         </div>
                         <div class="md-step active editable">
-                            <div class="md-step-circle">
+                            <div style="background: <?=$cor ?>;" class="md-step-circle">
                                 <span>2</span>
                             </div>
                             <div class="md-step-title">Em Trânsito</div>
@@ -392,7 +394,7 @@ function carregar() {
                             <div class="md-step-bar-right"></div>
                         </div>
                         <div class="md-step active">
-                            <div class="md-step-circle">
+                            <div style="background: <?=$cor ?>;" class="md-step-circle">
                                 <span><i class="fas fa-truck-loading"></i></span>
                             </div>
                             <div class="md-step-title">Chegou na Base</div>
@@ -401,7 +403,7 @@ function carregar() {
                             <div class="md-step-bar-right"></div>
                         </div>
                         <div class="md-step">
-                            <div class="md-step-circle">
+                            <div style="background: <?=$cor ?>;" class="md-step-circle">
                                 <span><i class="fas fa-shipping-fast"></i></span>
                             </div>
                             <div class="md-step-title">Saiu para Entrega</div>
@@ -410,7 +412,7 @@ function carregar() {
                             <div class="md-step-bar-right"></div>
                         </div>
                         <div class="md-step">
-                            <div class="md-step-circle">
+                            <div style="background: <?=$cor ?>;" class="md-step-circle">
                                 <span><i class="fas fa-check"></i></span>
                             </div>
                             <div class="md-step-title">Entregue</div>
