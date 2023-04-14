@@ -2,22 +2,96 @@
 include_once("../conexao.php");
 @session_start();
 if (!isset($_SESSION['cliente_logado'])) :
-	header('Location: index.php');
+    header('Location: index.php');
 endif;
 
+$banco = abrirBanco();
 $id_cliente = $_SESSION['id_cliente'];
-$sql = "SELECT * FROM cadastro_cliente WHERE id = '$id_cliente'";
-$resultado = mysqli_query($conn, $sql);
-while(@$dados = mysqli_fetch_array($resultado)){
-    @$clientes[] = $dados;
+$sql = "SELECT * FROM cadastro_clientes WHERE id = '$id_cliente'";
+$resultado = $banco->query($sql);
+if ($resultado->num_rows > 0) {
+    $cliente = $resultado->fetch_assoc();
 }
 
 @$item = $_POST['item'];
 
+
+function getItensByCliente($cpf_cnpj_cliente)
+{
+    $itens = array();
+    $banco = abrirBanco();
+
+    // Use prepared statement to prevent SQL injection
+    $stmt = $banco->prepare("SELECT codigo_barras FROM tracking_etiquetas WHERE cpf_cnpj_remetente = ? ORDER BY id DESC");
+    $stmt->bind_param("s", $cpf_cnpj_cliente);
+    $stmt->execute();
+
+    // Check for query errors
+    if (!$stmt) {
+        die("Erro ao executar consulta: " . $banco->error);
+    }
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $codigo_barras = $row['codigo_barras'];
+
+            // Use prepared statement to prevent SQL injection
+            $stmt_mercadoria = $banco->prepare("SELECT * FROM tracking_mercadorias WHERE codigo_barras = ?");
+            $stmt_mercadoria->bind_param("s", $codigo_barras);
+            $stmt_mercadoria->execute();
+
+            // Check for query errors
+            if (!$stmt_mercadoria) {
+                die("Erro ao executar consulta: " . $banco->error);
+            }
+
+            $result_mercadoria = $stmt_mercadoria->get_result();
+
+            if ($result_mercadoria->num_rows > 0) {
+                $mercadoria = $result_mercadoria->fetch_assoc();
+
+                // Use prepared statement to prevent SQL injection
+                $stmt_movimentacao = $banco->prepare("SELECT * FROM tracking_movimentacoes WHERE id_mercadoria = ?");
+                $stmt_movimentacao->bind_param("s", $mercadoria['id']);
+                $stmt_movimentacao->execute();
+
+                // Check for query errors
+                if (!$stmt_movimentacao) {
+                    die("Erro ao executar consulta: " . $banco->error);
+                }
+
+                $result_movimentacao = $stmt_movimentacao->get_result();
+
+                if ($result_movimentacao->num_rows > 0) {
+                    while ($row_movimentacao = $result_movimentacao->fetch_assoc()) {
+                        $itens[$codigo_barras][] = $row_movimentacao;
+                    }
+                }
+            }
+        }
+    }
+
+    $banco->close();
+
+    return $itens;
+}
+
+// Função que recebe movimentações de uma encomenda e um status que deve ser procurado
+function verificaStatusMovimentacao($movimentacoes, $status)
+{
+    foreach ($movimentacoes as $movimentacao) {
+        if ($movimentacao['status'] == $status) {
+            echo "<div class='md-step-optional'>" .  date("d/m/Y - H:i", strtotime($movimentacao['data'])) . "</div>";
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +103,7 @@ while(@$dados = mysqli_fetch_array($resultado)){
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://kit.fontawesome.com/7a8d54eabc.js" crossorigin="anonymous"></script>
     <script>
-        if (typeof navigator.serviceWorker !== 'undefined'){
+        if (typeof navigator.serviceWorker !== 'undefined') {
             navigator.serviceWorker.register('../pwabuilder-sw.js')
         }
     </script>
@@ -61,7 +135,7 @@ function carregar() {
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-            <img src="../img/logo_vb.png" alt="">
+                <img src="../img/logo_vb.png" alt="">
 
             </div>
             <span class="logo_name">Cliente</span>
@@ -69,17 +143,17 @@ function carregar() {
 
         <div class="menu-items">
             <ul class="nav-links">
-             
+
                 <li>
- 
+
                     <form method="post" action="">
                         <a href="#">
                             <i class="fas fa-map-marker-alt"></i>
                             <input type="hidden" name="item" value="rastreio">
                             <input type="submit" class="link-name" value="Rastreio" style="background:transparent; border:0px solid transparent">
                         </a>
-                    </form>    
- 
+                    </form>
+
                 </li>
                 <!--<li>
                     <a href="#">
@@ -114,37 +188,37 @@ function carregar() {
                     </a>
                 </li>-->
             </ul>
-            
+
             <ul class="logout-mode">
                 <li><a href="../logout.php">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Sair</span>
-                </a></li>
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Sair</span>
+                    </a></li>
 
                 <li class="mode">
                     <a href="#">
                         <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
-                </a>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
 
-                <div class="mode-toggle">
-                  <span class="switch"></span>
-                </div>
-            </li>
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
-    <div class="activity"> 
-    <section class="chat-geral">
-        <div class="chat-header">
-            <div class="chat-content">
+    <div class="activity">
+        <section class="chat-geral">
+            <div class="chat-header">
+                <div class="chat-content">
 
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
     </div>
     <section class="dashboard">
- 
+
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
 
@@ -181,7 +255,7 @@ function carregar() {
                 </div>
             </div> -->
 
-            <!-- <div class="activity">
+        <!-- <div class="activity">
                 <div class="title">
                     <i class="uil uil-clock-three"></i>
                     <span class="text">Últimas Postagens:</span>
@@ -242,60 +316,117 @@ function carregar() {
                     </div>
                 </div>
             </div> -->
- 
-            <?php
-            if($item == "rastreio"){?>
-                <div class="activity">
-                    <div class="title">
-                        <i id="icon-1" class="fas fa-map-marked-alt"></i>
+
+        <?php
+        if ($item == "rastreio") { ?>
+
+            <div class="activity">
+                <div class="title">
+                    <i id="icon-1" class="fas fa-map-marked-alt"></i>
                     <div class="text-orders">
                         <span class="text">Rastreio:</span>
                         <small id="subtext-titles" class="text">Itens em Rota</small>
                     </div>
-                    </div>
- 
+                </div>
 
-                    <div class="activity-data">
-                        <div class="md-stepper-horizontal orange">
-                            <div class="md-step active done">
+
+                <!-- <div class="activity-data">
+                    <div class="md-stepper-horizontal orange">
+                        <div class="md-step active done">
                             <div class="md-step-circle"><span>1</span></div>
                             <div class="md-step-title">Postado</div>
                             <div class="md-step-optional">Item recebido</div>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
-                            </div>
-                            <div class="md-step active editable">
+                        </div>
+                        <div class="md-step active editable">
                             <div class="md-step-circle"><span>2</span></div>
                             <div class="md-step-title">Em Trânsito</div>
                             <div class="md-step-optional">Para a base mais próxima</div>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
-                            </div>
-                            <div class="md-step active">
+                        </div>
+                        <div class="md-step active">
                             <div class="md-step-circle"><span> <i class="fas fa-truck-loading"></i></span></div>
                             <div class="md-step-title">Chegou na Base</div>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
-                            </div>
-                            <div class="md-step">
+                        </div>
+                        <div class="md-step">
                             <div class="md-step-circle"><span><i class="fas fa-shipping-fast"></i></span></div>
                             <div class="md-step-title">Saiu para Entrega</div>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
-                            </div>
-                            <div class="md-step">
-                                <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
-                                <div class="md-step-title">Entregue</div>
-                                <div class="md-step-bar-left"></div>
-                                <div class="md-step-bar-right"></div>
-                            </div>
                         </div>
+                        <div class="md-step">
+                            <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
+                            <div class="md-step-title">Entregue</div>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <?php
+            foreach (getItensByCliente($cliente['cnpj_cpf']) as $item) { ?>
+                <div class="activity-data">
+                    <div class="md-stepper-horizontal orange">
+                        <div class="md-step active done">
+                            <div class="md-step-circle">
+                                <span>1</span>
+                            </div>
+                            <div class="md-step-title">Postado</div>
+                            <div class="md-step-optional">Item recebido</div>
+                            <?php verificaStatusMovimentacao($item, 1); ?>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
+                        </div>
+                        <div class="md-step active editable">
+                            <div class="md-step-circle">
+                                <span>2</span>
+                            </div>
+                            <div class="md-step-title">Em Trânsito</div>
+                            <div class="md-step-optional">Para a base mais próxima</div>
+                            <?php verificaStatusMovimentacao($item, 2); ?>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
+                        </div>
+                        <div class="md-step active">
+                            <div class="md-step-circle">
+                                <span><i class="fas fa-truck-loading"></i></span>
+                            </div>
+                            <div class="md-step-title">Chegou na Base</div>
+                            <?php verificaStatusMovimentacao($item, 3); ?>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
+                        </div>
+                        <div class="md-step">
+                            <div class="md-step-circle">
+                                <span><i class="fas fa-shipping-fast"></i></span>
+                            </div>
+                            <div class="md-step-title">Saiu para Entrega</div>
+                            <?php verificaStatusMovimentacao($item, 4); ?>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
+                        </div>
+                        <div class="md-step">
+                            <div class="md-step-circle">
+                                <span><i class="fas fa-check"></i></span>
+                            </div>
+                            <div class="md-step-title">Entregue</div>
+                            <?php verificaStatusMovimentacao($item, 5); ?>
+                            <div class="md-step-bar-left"></div>
+                            <div class="md-step-bar-right"></div>
                         </div>
                     </div>
                 </div>
             <?php
-            }elseif($item == 'chat'){
-            echo('<section class="msger">
+            } ?>
+            </div>
+            </div>
+        <?php
+        } elseif ($item == 'chat') {
+            echo ('<section class="msger">
             <header class="msger-header">
               <div class="msger-header-title">
                 <i class="fas fa-comment-alt"></i> VBChat - Procotolo: 20230001
@@ -421,12 +552,13 @@ function carregar() {
           </div>
           </section>');
             //Código do chat aqui!!';
-                 
-            }?>    
- 
-        
+
+        } ?>
+
+
     </section>
- <script src="../js/app.js"></script>
- <script src="../js/show.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/show.js"></script>
 </body>
+
 </html>
