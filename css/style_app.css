@@ -558,7 +558,7 @@ body.dark .switch:before{
     width: calc(100% - 250px);
     padding: 10px 14px;
     transition: var(--tran-05);
-    height: 100vh;
+    /* height: 100vh; */
 }
 nav.close ~ .dashboard{
     left: 73px;
