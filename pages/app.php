@@ -1,7 +1,7 @@
 <?php
 include_once("../conexao.php");
 @session_start();
-if (!isset($_SESSION['cliente_logado'])) :
+if (!isset($_SESSION['cliente_logado']) && !isset($_SESSION['adm_logado'])) :
     header('Location: index.php');
 endif;
 
