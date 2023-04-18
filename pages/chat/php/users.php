@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "../../../conexao.php";
-$outgoing_id = $_SESSION['id_usuario'];
+$outgoing_id = $_SESSION['unique_id'];
 $sql = "SELECT * FROM cadastro_clientes ORDER BY last_interaction DESC";
 $query = mysqli_query($conn, $sql);
 $output = "";

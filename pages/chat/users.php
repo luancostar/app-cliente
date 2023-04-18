@@ -13,7 +13,7 @@ if (!isset($_SESSION['adm_logado'])) {
       <header>
         <div class="content">
           <?php
-          $sql = mysqli_query($conn, "SELECT * FROM usuarios WHERE id = {$_SESSION['id_usuario']}");
+          $sql = mysqli_query($conn, "SELECT * FROM usuarios WHERE id = {$_SESSION['unique_id']}");
           if (mysqli_num_rows($sql) > 0) {
             $row = mysqli_fetch_assoc($sql);
           }
