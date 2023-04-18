@@ -27,6 +27,7 @@ if (isset($_POST['btn-entrar'])) :
       if ($user_pass === $enc_pass) :
         $_SESSION['cliente_logado'] = true;
         $_SESSION['id_cliente'] = $row['id'];
+        $_SESSION['unique_id'] = $row['unique_id'];
         header('Location: app.php');
       else :
         $erros[] = "<center>Login Inválido!</center>";
