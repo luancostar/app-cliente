@@ -2,7 +2,7 @@
 session_start();
 include_once "../../conexao.php";
 if (!isset($_SESSION['adm_logado'])) {
-  header("location: ../../index.php");
+  header("location: ../app.php");
 }
 ?>
 <?php include_once "header.php"; ?>

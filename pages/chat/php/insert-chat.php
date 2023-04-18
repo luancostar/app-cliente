@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['cliente_logado'])) {
+if (isset($_SESSION['cliente_logado']) || isset($_SESSION['adm_logado'])) {
     include_once "../../../conexao.php";
     $outgoing_id = $_SESSION['unique_id'];
     $incoming_id = mysqli_real_escape_string($conn, $_POST['incoming_id']);

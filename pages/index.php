@@ -2,9 +2,8 @@
 require_once '../conexao.php';
 
 session_start();
-@$cnpj_cpf_replace = str_replace('.', '', $_POST['cnpj_cpf']);
-$cnpj_cpf_replace2 = str_replace('-', '', $cnpj_cpf_replace);
-$cnpj_cpf_final = str_replace('/', '', $cnpj_cpf_replace2);
+@$cnpj_cpf_final = preg_replace("/\D+/", "", $_POST['cnpj_cpf']); //Retira todas as strings não numéricas
+
 if (isset($_POST['btn-entrar'])) {
   $erros = array();
   @$cnpj_cpf = mysqli_escape_string($conn, $cnpj_cpf_final);
