@@ -12,7 +12,6 @@ $resultado = $banco->query($sql);
 if ($resultado->num_rows > 0) {
     $cliente = $resultado->fetch_assoc();
 }
-
 @$item = $_POST['item'];
 
 
@@ -129,6 +128,7 @@ function carregar() {
 </script> -->
 
 <body style="background-color: #F2F2F2;" onLoad="setTimeout(carregar, 8000);">
+
     <!-- <div id="loading-content" style="height: 100vw">
         <div class="anima-truck" style="height: 65vh;display: flex;align-items: center;justify-content: center;overflow: hidden;">
             <img style="width: 22rem;"src="../img/truck.gif" alt="">
@@ -149,7 +149,7 @@ function carregar() {
                 <img src="../img/logo_vb.png" alt="">
 
             </div>
-            <span class="logo_name">Cliente</span>
+            <span class="logo_name"></span>
         </div>
 
         <div class="menu-items">

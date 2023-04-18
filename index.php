@@ -2,19 +2,20 @@
 include_once("conexao.php");
 @session_start();
 if (!isset($_SESSION['cliente_logado'])) :
-	header('Location: login.php');
+    header('Location: index.php');
 endif;
 
 $id_cliente = $_SESSION['id_cliente'];
 $sql = "SELECT * FROM cadastro_cliente WHERE id = '$id_cliente'";
 $resultado = mysqli_query($conn, $sql);
-while($dados = mysqli_fetch_array($resultado)){
+while ($dados = mysqli_fetch_array($resultado)) {
     $clientes[] = $dados;
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,16 +27,17 @@ while($dados = mysqli_fetch_array($resultado)){
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://kit.fontawesome.com/7a8d54eabc.js" crossorigin="anonymous"></script>
     <script>
-        if (typeof navigator.serviceWorker !== 'undefined'){
+        if (typeof navigator.serviceWorker !== 'undefined') {
             navigator.serviceWorker.register('pwabuilder-sw.js')
         }
     </script>
 </head>
+
 <body>
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-            <img src="img/logo_vb.png" alt="">
+                <img src="img/logo_vb.png" alt="">
 
             </div>
             <span class="logo_name">Cliente</span>
@@ -78,23 +80,23 @@ while($dados = mysqli_fetch_array($resultado)){
                     <span class="link-name">Share</span>2
                 </a></li> -->
             </ul>
-            
+
             <ul class="logout-mode">
                 <li><a href="logout.php">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Sair</span>
-                </a></li>
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Sair</span>
+                    </a></li>
 
                 <li class="mode">
                     <a href="#">
                         <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
-                </a>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
 
-                <div class="mode-toggle">
-                  <span class="switch"></span>
-                </div>
-            </li>
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
@@ -201,41 +203,41 @@ while($dados = mysqli_fetch_array($resultado)){
             <div class="activity">
                 <div class="title">
                     <i class="fas fa-map-marked-alt"></i>
-                <div class="text-orders">
-                    <span class="text">Rastreio:</span>
-                    <small id="subtext-titles" class="text">Itens em Rota</small>
-                </div>
+                    <div class="text-orders">
+                        <span class="text">Rastreio:</span>
+                        <small id="subtext-titles" class="text">Itens em Rota</small>
+                    </div>
                 </div>
 
                 <?php
-                foreach($clientes as $clientes2){?>    
+                foreach ($clientes as $clientes2) { ?>
                     <div class="activity-data">
                         <div class="md-stepper-horizontal orange">
                             <div class="md-step active done">
-                            <div class="md-step-circle"><span>1</span></div>
-                            <div class="md-step-title">Postado</div>
-                            <div class="md-step-optional">Item recebido</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
+                                <div class="md-step-circle"><span>1</span></div>
+                                <div class="md-step-title">Postado</div>
+                                <div class="md-step-optional">Item recebido</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
                             </div>
                             <div class="md-step active editable">
-                            <div class="md-step-circle"><span>2</span></div>
-                            <div class="md-step-title">Em Trânsito</div>
-                            <div class="md-step-optional">Para a base mais próxima</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
+                                <div class="md-step-circle"><span>2</span></div>
+                                <div class="md-step-title">Em Trânsito</div>
+                                <div class="md-step-optional">Para a base mais próxima</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
                             </div>
                             <div class="md-step active">
-                            <div class="md-step-circle"><span> <i class="fas fa-truck-loading"></i></span></div>
-                            <div class="md-step-title">Chegou na Base</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
+                                <div class="md-step-circle"><span> <i class="fas fa-truck-loading"></i></span></div>
+                                <div class="md-step-title">Chegou na Base</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
                             </div>
                             <div class="md-step">
-                            <div class="md-step-circle"><span><i class="fas fa-shipping-fast"></i></span></div>
-                            <div class="md-step-title">Saiu para Entrega</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
+                                <div class="md-step-circle"><span><i class="fas fa-shipping-fast"></i></span></div>
+                                <div class="md-step-title">Saiu para Entrega</div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
                             </div>
                             <div class="md-step">
                                 <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
@@ -246,10 +248,11 @@ while($dados = mysqli_fetch_array($resultado)){
                         </div>
                     </div>
                 <?php
-                }?>    
+                } ?>
             </div>
         </div>
     </section>
- <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
