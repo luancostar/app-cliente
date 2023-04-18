@@ -2,41 +2,59 @@
 require_once '../conexao.php';
 
 session_start();
+@$cnpj_cpf_final = preg_replace("/\D+/", "", $_POST['cnpj_cpf']); //Retira todas as strings não numéricas
 
-@$cnpj_cpf_replace = str_replace('.', '', $_POST['cnpj_cpf']);
-$cnpj_cpf_replace2 = str_replace('-', '', $cnpj_cpf_replace);
-$cnpj_cpf_final = str_replace('/', '', $cnpj_cpf_replace2);
-
-
-if (isset($_POST['btn-entrar'])) :
+if (isset($_POST['btn-entrar'])) {
   $erros = array();
   @$cnpj_cpf = mysqli_escape_string($conn, $cnpj_cpf_final);
   $senha = mysqli_escape_string($conn, $_POST['senha']);
 
-  if (empty($cnpj_cpf) or empty($senha)) :
+  if (empty($cnpj_cpf) or empty($senha)) {
     $erros[] = "<center>Os Campos precisam ser preenchidos!</center>";
-  else :
-    $sql = "SELECT * FROM cadastro_clientes WHERE cnpj_cpf = '$cnpj_cpf' AND status_ativacao <> 0";
-    $resultado = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($resultado) > 0) :
-      $row = mysqli_fetch_assoc($resultado);
+  } else {
+    // Pesquisa se o usuário é cliente
+    $sql_cliente = "SELECT * FROM cadastro_clientes WHERE cnpj_cpf = '$cnpj_cpf' AND status_ativacao <> 0";
+    $result_cliente = mysqli_query($conn, $sql_cliente);
+
+    // Pesquisa se o usuário é Administrador
+    $sql_adm = "SELECT * FROM usuarios WHERE cpf = '$cnpj_cpf' AND status <> 0";
+    $result_adm = mysqli_query($conn, $sql_adm);
+
+    // CLIENTE
+    if (mysqli_num_rows($result_cliente) > 0) {
+      $row = mysqli_fetch_assoc($result_cliente);
       $user_pass = md5($senha);
       $enc_pass = $row['senha'];
 
 
-      if ($user_pass === $enc_pass) :
+      if ($user_pass === $enc_pass) {
         $_SESSION['cliente_logado'] = true;
         $_SESSION['id_cliente'] = $row['id'];
         $_SESSION['unique_id'] = $row['unique_id'];
         header('Location: app.php');
-      else :
+      } else {
         $erros[] = "<center>Login Inválido!</center>";
-      endif;
-    else :
+      }
+
+      // ADMINISTRADOR
+    } elseif (mysqli_num_rows($result_adm) > 0) {
+
+      $row = mysqli_fetch_assoc($result_adm);
+      $user_pass = $senha;
+      $adm_pass = $row['senha'];
+      if ($user_pass === $adm_pass) {
+        $_SESSION['adm_logado'] = true;
+        $_SESSION['id_adm'] = $row['id'];
+        $_SESSION['unique_id'] = $row['id'];
+        header('Location: chat/users.php');
+      } else {
+        $erros[] = "<center>Login Inválido!</center>";
+      }
+    } else {
       $erros[] = "<center>Login Inválido!</center>";
-    endif;
-  endif;
-endif;
+    }
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
