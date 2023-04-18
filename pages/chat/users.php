@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "../../conexao.php";
-if (!isset($_SESSION['cliente_logado'])) {
+if (!isset($_SESSION['adm_logado'])) {
   header("location: ../../index.php");
 }
 ?>
