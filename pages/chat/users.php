@@ -18,8 +18,14 @@ if (!isset($_SESSION['adm_logado'])) {
             $row = mysqli_fetch_assoc($sql);
           }
           ?>
-          <div class="details">
+          <div id="details-atendant" class="details">
+            <div class="data-user">
+            <span><img src="../../img/sac.jpg" alt=""></span>
             <span><?php echo $row['nome'] ?></span>
+            </div>
+            <div class="exit-div">
+            <a href=""><button><i id="exit-icon" class="fas fa-door-open"> Sair</i></button></a>
+            </div>
           </div>
         </div>
       </header>

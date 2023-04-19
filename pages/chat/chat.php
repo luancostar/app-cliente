@@ -57,11 +57,13 @@ if (!isset($_SESSION['cliente_logado']) && !isset($_SESSION['adm_logado'])) {
       <div class="chat-box">
 
       </div>
+      <div class="input-form">
       <form action="#" class="typing-area">
         <input type="hidden" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>">
         <input type="text" name="message" class="input-field" placeholder="Escreva a mensagem aqui" autocomplete="off">
         <button><i class="fab fa-telegram-plane"></i></button>
       </form>
+      </div>
     </section>
   </div>
 
