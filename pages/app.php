@@ -185,12 +185,18 @@ function carregar() {
                     </a>
                 </li>-->
                 <li>
-                    <form method="post" action="">
-                        <a href="#">
-                            <i class="uil uil-comments"></i>
-                            <input type="hidden" name="item" value="chat">
-                            <input type="submit" class="link-name" value="Chat" style="background:transparent; border:0px solid transparent">
-                        </a>
+                    <?php
+                    if (isset($_SESSION['cliente_logado'])) {
+                        echo "<a href='chat/chat.php'>";
+                    } elseif (isset($_SESSION['adm_logado'])) {
+                        echo "<a href='chat/users.php'>";
+                    }
+
+                    ?>
+                    <i class="uil uil-comments"></i>
+                    <input type="hidden" name="item" value="chat">
+                    <input type="submit" class="link-name" value="Chat" style="background:transparent; border:0px solid transparent">
+                    </a>
                 </li>
                 <!--<li>
                     <a href="#">
