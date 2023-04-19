@@ -23,6 +23,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                         <p>' . $you . $msg . '</p>
                     </div>
                     </div>
+                    <div style="display: flex; align-items: center;white-space:nowrap;margin-right: 5px;color: #gray; font-size: 11px;" class="data-time">00:00 01/01/2023<i style="margin-left: 7px;color: #gray" class="far fa-clock"></i></div>
                     <div class="status-dot ' . $offline . '"><i class="fas fa-circle"></i></div>
                 </a>';
 }
