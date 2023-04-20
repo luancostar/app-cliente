@@ -12,6 +12,10 @@ $resultado = $banco->query($sql);
 if ($resultado->num_rows > 0) {
     $cliente = $resultado->fetch_assoc();
 }
+
+if (!isset($_POST['item'])) {
+    $_POST['item'] = 'rastreio';
+}
 @$item = $_POST['item'];
 
 
@@ -97,6 +101,40 @@ function verificaStatus($movimentacoes, $status)
     }
     return "#999999";
 }
+
+function getItensByCliente2($cpf_cnpj_cliente)
+{
+
+    $itens = array();
+    $sql = "SELECT * FROM dash_receitas WHERE cpf_cnpj_cliente= '$cpf_cnpj_cliente' ORDER BY emissao_cte DESC";
+    $result = abrirBanco()->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $itens[] = $row;
+        }
+    }
+    return $itens;
+}
+
+function verificaEmTransito($manifesto, $data_baixa)
+{
+    if ($manifesto == 0 && $data_baixa == '0000-00-00') {
+        return "#999999";
+    }
+    return '#3AC148';
+}
+
+function verificaChegadaBase($chegada_base)
+{
+}
+
+function verificaEntrega($data_baixa)
+{
+    if ($data_baixa ==  '0000-00-00') {
+        return "#999999";
+    }
+    return '#3AC148';
+}
 ?>
 <!DOCTYPE html>
 
@@ -158,11 +196,11 @@ function carregar() {
                 <li>
 
                     <form method="post" action="">
-                        <a href="#">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <input type="hidden" name="item" value="rastreio">
-                            <input type="submit" class="link-name" value="Rastreio" style="background:transparent; border:0px solid transparent">
-                        </a>
+
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="hidden" name="item" value="rastreio">
+                        <input type="submit" class="link-name" value="Rastreio" style="background:transparent; border:0px solid transparent">
+
                     </form>
 
                 </li>
@@ -184,7 +222,7 @@ function carregar() {
                         <span class="link-name">Elogios e Reclamações</span>
                     </a>
                 </li>-->
-                <li>
+                <!-- <li>
                     <?php
                     if (isset($_SESSION['cliente_logado'])) {
                         echo "<a href='chat/chat.php'>";
@@ -197,7 +235,7 @@ function carregar() {
                     <input type="hidden" name="item" value="chat">
                     <input type="submit" class="link-name" value="Chat" style="background:transparent; border:0px solid transparent">
                     </a>
-                </li>
+                </li> -->
                 <!--<li>
                     <a href="#">
                         <i class="uil uil-share"></i>
@@ -385,40 +423,40 @@ function carregar() {
                 </div> -->
             </div>
             <?php
-            foreach (getItensByCliente($cliente['cnpj_cpf']) as $item) { ?>
+            foreach (getItensByCliente2($cliente['cnpj_cpf']) as $item) { ?>
                 <div class="activity-data">
                     <div class="md-stepper-horizontal orange">
                         <div class="md-step active done">
-                            <div style="background: <?= verificaStatus($item, 1); ?>;" class="md-step-circle">
+                            <div style="background: #3AC148" class="md-step-circle">
                                 <span>1</span>
                             </div>
                             <div class="md-step-title">Postado</div>
-                            <div id="minhaDiv" class="md-step-optional">Item recebido
-                                <?php buscaMovimentacao($item, 1); ?>
-                            </div>
+                            <div id="minhaDiv" class="md-step-optional">Item recebido</div>
+                            <div id="minhaDiv" class="md-step-optional"><?= date("d/m/Y", strtotime($item['emissao_cte'])) ?></div>
+
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
                         </div>
                         <div class="md-step active editable">
-                            <div style="background: <?= verificaStatus($item, 2); ?>;" class="md-step-circle">
+                            <div style="background: <?= verificaEmTransito($item['maf'], $item['baixa_entrega']) ?>;" class="md-step-circle">
                                 <span>2</span>
                             </div>
                             <div class="md-step-title">Em Trânsito</div>
                             <div class="md-step-optional">Para a base mais próxima</div>
-                            <?php buscaMovimentacao($item, 2); ?>
+
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
                         </div>
-                        <div class="md-step active">
+                        <!-- <div class="md-step active">
                             <div style="background: <?= verificaStatus($item, 3); ?>;" class="md-step-circle">
                                 <span><i class="fas fa-truck-loading"></i></span>
                             </div>
                             <div class="md-step-title">Chegou na Base</div>
-                            <?php buscaMovimentacao($item, 3); ?>
+                            <?php verificaChegadaBase($item); ?>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step">
+                        </div> -->
+                        <!-- <div class="md-step">
                             <div style="background: <?= verificaStatus($item, 4); ?>;" class="md-step-circle">
                                 <span><i class="fas fa-shipping-fast"></i></span>
                             </div>
@@ -426,13 +464,12 @@ function carregar() {
                             <?php buscaMovimentacao($item, 4); ?>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
-                        </div>
+                        </div> -->
                         <div class="md-step">
-                            <div style="background: <?= verificaStatus($item, 5); ?>;" class="md-step-circle">
+                            <div style="background: <?= verificaEntrega($item['baixa_entrega']) ?>;" class="md-step-circle">
                                 <span><i class="fas fa-check"></i></span>
                             </div>
                             <div class="md-step-title">Entregue</div>
-                            <?php buscaMovimentacao($item, 5); ?>
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
                         </div>
