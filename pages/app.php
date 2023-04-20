@@ -443,6 +443,13 @@ function carregar() {
                             </div>
                             <div class="md-step-title">Em Trânsito</div>
                             <div class="md-step-optional">Para a base mais próxima</div>
+                            <div class="md-step-optional">
+                                <?php
+                                if ($item['data_maf'] != "0000-00-00") {
+                                    echo $item['data_maf'];
+                                }
+                                ?>
+                            </div>
 
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
