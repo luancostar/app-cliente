@@ -470,6 +470,14 @@ function carregar() {
                                 <span><i class="fas fa-check"></i></span>
                             </div>
                             <div class="md-step-title">Entregue</div>
+                            <div class="md-step-optional">
+                                <?php
+                                if ($item['baixa_entrega'] != '0000-00-00') {
+                                    echo date("d/m/Y", strtotime($item['baixa_entrega']));
+                                }
+                                ?>
+                            </div>
+
                             <div class="md-step-bar-left"></div>
                             <div class="md-step-bar-right"></div>
                         </div>
