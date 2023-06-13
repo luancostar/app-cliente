@@ -84,7 +84,7 @@ if (isset($_POST['btn-entrar'])) {
         <form action="" name="loginform" method="post">
           <div class="login-form-group">
             <label for="email">CNPJ/CPF: <span class="required-star">*</span></label>
-            <input name="cnpj_cpf" placeholder="CNPJF ou CPF do cliente" id="myInput" maxlength="18" required>
+            <input name="cnpj_cpf" placeholder="CNPJ ou CPF do cliente" id="myInput" maxlength="18" required>
             <input id="cnpj" style="display: none">
             <input id="cpf" style="display: none">
           </div>

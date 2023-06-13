@@ -78,6 +78,69 @@ function getItensByCliente($cpf_cnpj_cliente)
     return $itens;
 }
 
+function getItensByClienteAndNotaFiscal($cpf_cnpj_cliente, $nota_fiscal) {
+    $itens = array();
+    $banco = abrirBanco();
+    $nota_fiscal = (int)$nota_fiscal;
+
+    // Use prepared statement to prevent SQL injection
+    $stmt = $banco->prepare("SELECT codigo_barras FROM tracking_etiquetas WHERE cpf_cnpj_remetente = ? AND nota_fiscal = ? ORDER BY id DESC");
+    $stmt->bind_param("si", $cpf_cnpj_cliente, $nota_fiscal);
+    $stmt->execute();
+
+    // Check for query errors
+    if (!$stmt) {
+        die("Erro ao executar consulta: " . $banco->error);
+    }
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $codigo_barras = $row['codigo_barras'];
+
+            // Use prepared statement to prevent SQL injection
+            $stmt_mercadoria = $banco->prepare("SELECT * FROM tracking_mercadorias WHERE codigo_barras = ?");
+            $stmt_mercadoria->bind_param("s", $codigo_barras);
+            $stmt_mercadoria->execute();
+
+            // Check for query errors
+            if (!$stmt_mercadoria) {
+                die("Erro ao executar consulta: " . $banco->error);
+            }
+
+            $result_mercadoria = $stmt_mercadoria->get_result();
+
+            if ($result_mercadoria->num_rows > 0) {
+                $mercadoria = $result_mercadoria->fetch_assoc();
+
+                // Use prepared statement to prevent SQL injection
+                $stmt_movimentacao = $banco->prepare("SELECT * FROM tracking_movimentacoes WHERE id_mercadoria = ?");
+                $stmt_movimentacao->bind_param("s", $mercadoria['id']);
+                $stmt_movimentacao->execute();
+
+                // Check for query errors
+                if (!$stmt_movimentacao) {
+                    die("Erro ao executar consulta: " . $banco->error);
+                }
+
+                $result_movimentacao = $stmt_movimentacao->get_result();
+
+                if ($result_movimentacao->num_rows > 0) {
+                    while ($row_movimentacao = $result_movimentacao->fetch_assoc()) {
+                        $itens[$codigo_barras][] = $row_movimentacao;
+                    }
+                }
+            }
+        }
+    }
+
+    $banco->close();
+
+    return $itens;
+    
+}
+
 // Função que recebe movimentações de uma encomenda e um status que deve ser procurado
 function buscaMovimentacao($movimentacoes, $status)
 {
@@ -128,21 +191,6 @@ function carregar() {
 </script> -->
 
 <body style="background-color: #F2F2F2;" onLoad="setTimeout(carregar, 8000);">
-
-    <!-- <div id="loading-content" style="height: 100vw">
-        <div class="anima-truck" style="height: 65vh;display: flex;align-items: center;justify-content: center;overflow: hidden;">
-            <img style="width: 22rem;"src="../img/truck.gif" alt="">
-        </div>
-        <div class="logo-vb" style="display: flex;align-items: center;justify-content: center;"> 
-            <div style="justify-items:center"> 
-                <img style="width:7rem;margin-left: 1rem;" src="../img/vblogo-e.png" alt="">
-                <div class="progress-loader">
-                    <div class="progress"></div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div ID="teste" style="display:none;">  -->
     <nav>
         <div class="logo-name">
             <div class="logo-image">
@@ -166,24 +214,7 @@ function carregar() {
                     </form>
 
                 </li>
-                <!--<li>
-                    <a href="#">
-                        <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">Ticket</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="uil uil-chart"></i>
-                        <span class="link-name">Histórico</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="uil uil-thumbs-up"></i>
-                        <span class="link-name">Elogios e Reclamações</span>
-                    </a>
-                </li>-->
+
                 <li>
                     <?php
                     if (isset($_SESSION['cliente_logado'])) {
@@ -198,12 +229,6 @@ function carregar() {
                     <input type="submit" class="link-name" value="Chat" style="background:transparent; border:0px solid transparent">
                     </a>
                 </li>
-                <!--<li>
-                    <a href="#">
-                        <i class="uil uil-share"></i>
-                        <span class="link-name">Share</span>
-                    </a>
-                </li>-->
             </ul>
 
             <ul class="logout-mode">
@@ -236,104 +261,19 @@ function carregar() {
     </div>
     <section class="dashboard">
 
-        <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
+        <form action="" method="post">
+            <div class="top">
+                <i class="uil uil-bars sidebar-toggle"></i>
 
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Procure aqui...">
+                <div class="search-box">
+                    <button>
+                        <i class="uil uil-search"></i>
+                    </button>
+                    <input type="text" name="nota_fiscal" placeholder="Procure aqui...">
+                    <input type="hidden" name="item" value="<?= $item ?>">
+                </div>
             </div>
-        </div>
-
-        <!-- <div class="dash-content">
-            <div class="overview">
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Dashboard</span>
-                </div>
-
-                <div class="boxes">
-                    <div class="box box1">
-                        <i class="fas fa-truck"></i>
-                        <span class="text">Total de Entregas:</span>
-                        <span class="number">23</span>
-                    </div>
-                    <div class="box box2">
-                        <i class="fas fa-coins"></i>
-                        <span class="text">VB Cash:</span>
-                        <span class="number">458 Pontos</span>
-                    </div>
-                    <div class="box box3">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span class="text">Rastreio:</span>
-                        <span class="number">Acompanhar</span>
-                        <span id="text-rastreio" class="text">02 Entregas em Rota</span>
-                    </div>
-                </div>
-            </div> -->
-
-        <!-- <div class="activity">
-                <div class="title">
-                    <i class="uil uil-clock-three"></i>
-                    <span class="text">Últimas Postagens:</span>
-                </div>
-
-                <div class="activity-data">
-                    <div class="data email">
-                        <span class="data-title">Produto</span>
-                        <span class="data-list">Produto Que foi Enviado</span>
-                        <span class="data-list">Produto Que foi Enviado</span>
-                        <span class="data-list">Produto Que foi Enviado</span>
-                        <span class="data-list">Produto Que foi Enviado</span>
-                        <span class="data-list">Produto Que foi Enviado</span>
-                        <span class="data-list">Produto Que foi Enviado</span>
-                        <span class="data-list">Produto Que foi Enviado</span>
-                         
-                    </div>
-                    <div class="data names">
-                        <span class="data-title">Nota Fiscal</span>
-                        <span class="data-list">123321</span>
-                        <span class="data-list">123321</span>
-                        <span class="data-list">123321</span>
-                        <span class="data-list">123321</span>
-                        <span class="data-list">123321</span>
-                        <span class="data-list">123321</span>
-                        <span class="data-list">123321</span>
-                    </div>
-                
-                    <div class="data joined">
-                        <span class="data-title">Postagem</span>
-                        <span class="data-list">2023-02-12</span>
-                        <span class="data-list">2023-02-12</span>
-                        <span class="data-list">2023-02-13</span>
-                        <span class="data-list">2023-02-13</span>
-                        <span class="data-list">2023-02-14</span>
-                        <span class="data-list">2023-02-14</span>
-                        <span class="data-list">2023-02-15</span>
-                    </div>
-                    <div class="data joined">
-                        <span class="data-title">Entregue</span>
-                        <span class="data-list">2023-02-12</span>
-                        <span class="data-list">2023-02-12</span>
-                        <span class="data-list">2023-02-13</span>
-                        <span class="data-list">2023-02-13</span>
-                        <span class="data-list">2023-02-14</span>
-                        <span class="data-list">2023-02-14</span>
-                        <span class="data-list">2023-02-15</span>
-                    </div>
-                    <div class="data status">
-                        <span class="data-title">Status</span>
-                        <span style="color: #00b500c7" class="data-list">No Prazo</span>
-                        <span style="color: #ff0000c2"class="data-list">Atrasado</span>
-                        <span style="color: #00b500c7" class="data-list">No Prazo</span>
-                        <span style="color: #00b500c7"class="data-list">No Prazo</span>
-                        <span style="color: #ff0000c2"class="data-list">Atrasado</span>
-                        <span style="color: #00b500c7"class="data-list">No Prazo</span>
-                        <span style="color: #00b500c7"class="data-list">No Prazo</span>
-                    </div>
-                </div>
-            </div> -->
-
+        </form>
         <?php
         if ($item == "rastreio") { ?>
 
@@ -345,101 +285,64 @@ function carregar() {
                         <small id="subtext-titles" class="text">Itens em Rota</small>
                     </div>
                 </div>
-
-
-                <!-- <div class="activity-data">
-                    <div class="md-stepper-horizontal orange">
-                        <div class="md-step active done">
-                            <div class="md-step-circle"><span>1</span></div>
-                            <div class="md-step-title">Postado</div>
-                            <div class="md-step-optional">Item recebido</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step active editable">
-                            <div class="md-step-circle"><span>2</span></div>
-                            <div class="md-step-title">Em Trânsito</div>
-                            <div class="md-step-optional">Para a base mais próxima</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step active">
-                            <div class="md-step-circle"><span> <i class="fas fa-truck-loading"></i></span></div>
-                            <div class="md-step-title">Chegou na Base</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step">
-                            <div class="md-step-circle"><span><i class="fas fa-shipping-fast"></i></span></div>
-                            <div class="md-step-title">Saiu para Entrega</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step">
-                            <div class="md-step-circle"><span><i class="fas fa-check"></i></span></div>
-                            <div class="md-step-title">Entregue</div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
+            <!-- Consulta via nota_fiscal -->
             <?php
-            foreach (getItensByCliente($cliente['cnpj_cpf']) as $item) { ?>
-                <div class="activity-data">
-                    <div class="md-stepper-horizontal orange">
-                        <div class="md-step active done">
-                            <div style="background: <?= verificaStatus($item, 1); ?>;" class="md-step-circle">
-                                <span>1</span>
+            $itens = isset($_POST['nota_fiscal']) ? getItensByClienteAndNotaFiscal($cliente['cnpj_cpf'], $_POST['nota_fiscal']) : getItensByCliente($cliente['cnpj_cpf']); 
+                foreach ($itens as $item) : ?>
+                    <div class="activity-data">
+                        <div class="md-stepper-horizontal orange">
+                            <div class="md-step active done">
+                                <div style="background: <?= verificaStatus($item, 1); ?>;" class="md-step-circle">
+                                    <span>1</span>
+                                </div>
+                                <div class="md-step-title">Postado</div>
+                                <div id="minhaDiv" class="md-step-optional">Item recebido
+                                    <?php buscaMovimentacao($item, 1); ?>
+                                </div>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
                             </div>
-                            <div class="md-step-title">Postado</div>
-                            <div id="minhaDiv" class="md-step-optional">Item recebido
-                                <?php buscaMovimentacao($item, 1); ?>
+                            <div class="md-step active editable">
+                                <div style="background: <?= verificaStatus($item, 2); ?>;" class="md-step-circle">
+                                    <span>2</span>
+                                </div>
+                                <div class="md-step-title">Em Trânsito</div>
+                                <div class="md-step-optional">Para a base mais próxima</div>
+                                <?php buscaMovimentacao($item, 2); ?>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
                             </div>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step active editable">
-                            <div style="background: <?= verificaStatus($item, 2); ?>;" class="md-step-circle">
-                                <span>2</span>
+                            <div class="md-step active">
+                                <div style="background: <?= verificaStatus($item, 3); ?>;" class="md-step-circle">
+                                    <span><i class="fas fa-truck-loading"></i></span>
+                                </div>
+                                <div class="md-step-title">Chegou na Base</div>
+                                <?php buscaMovimentacao($item, 3); ?>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
                             </div>
-                            <div class="md-step-title">Em Trânsito</div>
-                            <div class="md-step-optional">Para a base mais próxima</div>
-                            <?php buscaMovimentacao($item, 2); ?>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step active">
-                            <div style="background: <?= verificaStatus($item, 3); ?>;" class="md-step-circle">
-                                <span><i class="fas fa-truck-loading"></i></span>
+                            <div class="md-step">
+                                <div style="background: <?= verificaStatus($item, 4); ?>;" class="md-step-circle">
+                                    <span><i class="fas fa-shipping-fast"></i></span>
+                                </div>
+                                <div class="md-step-title">Saiu para Entrega</div>
+                                <?php buscaMovimentacao($item, 4); ?>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
                             </div>
-                            <div class="md-step-title">Chegou na Base</div>
-                            <?php buscaMovimentacao($item, 3); ?>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step">
-                            <div style="background: <?= verificaStatus($item, 4); ?>;" class="md-step-circle">
-                                <span><i class="fas fa-shipping-fast"></i></span>
+                            <div class="md-step">
+                                <div style="background: <?= verificaStatus($item, 5); ?>;" class="md-step-circle">
+                                    <span><i class="fas fa-check"></i></span>
+                                </div>
+                                <div class="md-step-title">Entregue</div>
+                                <?php buscaMovimentacao($item, 5); ?>
+                                <div class="md-step-bar-left"></div>
+                                <div class="md-step-bar-right"></div>
                             </div>
-                            <div class="md-step-title">Saiu para Entrega</div>
-                            <?php buscaMovimentacao($item, 4); ?>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
-                        </div>
-                        <div class="md-step">
-                            <div style="background: <?= verificaStatus($item, 5); ?>;" class="md-step-circle">
-                                <span><i class="fas fa-check"></i></span>
-                            </div>
-                            <div class="md-step-title">Entregue</div>
-                            <?php buscaMovimentacao($item, 5); ?>
-                            <div class="md-step-bar-left"></div>
-                            <div class="md-step-bar-right"></div>
                         </div>
                     </div>
-                </div>
-            <?php
-            } ?>
+                <?php endforeach; ?>
             </div>
             </div>
         <?php
