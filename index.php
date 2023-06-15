@@ -46,7 +46,7 @@ if (isset($_POST['btn-entrar'])) {
         $_SESSION['adm_logado'] = true;
         $_SESSION['id_adm'] = $row['id'];
         $_SESSION['unique_id'] = $row['id'];
-        header('Location: chat/users.php');
+        header('Location: pages/chat/users.php');
       } else {
         $erros[] = "<center>Login Inválido!</center>";
       }
