@@ -281,7 +281,7 @@ function carregar() {
                 <div class="title">
                     <i id="icon-1" class="fas fa-map-marked-alt"></i>
                     <div class="text-orders">
-                        <span class="text">Rastreio:</span>
+                        <span class="text">Rastreio: <?php echo isset($_POST['nota_fiscal']) ? $_POST['nota_fiscal'] : "Todos" ?></span>
                         <small id="subtext-titles" class="text">Itens em Rota</small>
                     </div>
                 </div>
