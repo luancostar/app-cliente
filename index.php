@@ -23,11 +23,8 @@ if (isset($_POST['btn-entrar'])) {
     // CLIENTE
     if (mysqli_num_rows($result_cliente) > 0) {
       $row = mysqli_fetch_assoc($result_cliente);
-      $user_pass = md5($senha);
-      $enc_pass = $row['senha'];
 
-
-      if ($user_pass === $enc_pass) {
+      if ($senha == $row['senha']) {
         $_SESSION['cliente_logado'] = true;
         $_SESSION['id_cliente'] = $row['id'];
         $_SESSION['unique_id'] = $row['unique_id'];
